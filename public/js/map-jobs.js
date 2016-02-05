@@ -19,11 +19,11 @@ $.ajax({
         // get map center
         // geocode if needed(prefer lat lng)
         $.each(jobs, function(){
-            var lat = this.lat;
-            var lng = this.lng;
+            var lat = Number(this.latitude);
+            var lng = Number(this.longitude);
 
             var infowindow = new google.maps.InfoWindow({
-                content: this.html
+                content: this.rendered_html
             });
 
 

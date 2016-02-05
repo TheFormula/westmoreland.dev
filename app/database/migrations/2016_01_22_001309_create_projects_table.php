@@ -17,6 +17,8 @@ class CreateProjectsTable extends Migration {
 			$table->increments('id');
 			$table->string('title', 150);
 			$table->string('address');
+			$table->float('latitude');
+			$table->float('longitude');
 			$table->text('description');
 			$table->string('hashtag')->unique();
 			$table->date('date_started');

@@ -22,9 +22,12 @@ class HomeController extends BaseController {
 
 	public function getJobs()
 	{
-		$jobs = [
-			['title' => 'test', 'html' => View::make('jobs.map-info')->render(), 'lat' => 28, 'lng' => -98]
-		];
+
+		$jobs = Projects::all();
+
+		foreach ($jobs as $job) {
+			$job->rendered_html = $job->html();
+		}
 
 		return $jobs;
 	}
