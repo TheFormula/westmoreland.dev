@@ -32,4 +32,9 @@ class HomeController extends BaseController {
 		return $jobs;
 	}
 
+	public function admin()
+	{
+		return View::make('admin.main');
+	}
+
 }
