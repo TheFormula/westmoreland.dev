@@ -1,0 +1,587 @@
+<!doctype html>  
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	
+	<title>Admin Box - Angular js administration theme</title>
+	
+	<meta name="description" content="Admin Box is a full angular js administration theme. Built wth bootstrap and optimised with grunt tasks for development and production tasks to increase site performance and speed.">
+	<meta name="author" content="Joao Garin">
+	<meta name="copyright" content="Joao Garin">
+	<meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+	<meta name="date" content="2015-02-20T00:00:00+01:00">
+	
+	<link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+	
+	
+	
+	<script src="assets/js/jquery.js"></script>
+	
+	<script src="assets/js/jquery.scrollTo.js"></script>
+	<script src="assets/js/jquery.easing.js"></script>
+	
+	<script>document.createElement('section');var duration='500',easing='swing';</script>
+	<script src="assets/js/script.js"></script>
+	
+	<style>
+		html{background-color:#F1F1CA;color:#554236;}
+		::-moz-selection{background:#45352C;color:#CDB380;}
+		::selection{background:#45352C;color:#CDB380;}
+		#documenter_sidebar #documenter_logo{background-image:url();}
+		a{color:#F77825;}
+		.btn {
+			border-radius:3px;
+		}
+		.btn-primary {
+			  background-image: -moz-linear-gradient(top, #F77825, #C7611E);
+			  background-image: -ms-linear-gradient(top, #F77825, #C7611E);
+			  background-image: -webkit-gradient(linear, 0 0, 0 F77825%, from(#554236), to(#C7611E));
+			  background-image: -webkit-linear-gradient(top, #F77825, #C7611E);
+			  background-image: -o-linear-gradient(top, #F77825, #C7611E);
+			  background-image: linear-gradient(top, #F77825, #C7611E);
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F77825', endColorstr='#C7611E', GradientType=0);
+			  border-color: #C7611E #C7611E #bfbfbf;
+			  color:#FFFFFF;
+		}
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+		  border-color: #F77825 #F77825 #bfbfbf;
+		  background-color: #C7611E;
+		}
+		hr{border-top:1px solid #DEDEBA;border-bottom:1px solid #FFFFD6;}
+		#documenter_sidebar, #documenter_sidebar ul a{background-color:#554236;color:#CDB380;}
+		#documenter_sidebar ul a{-webkit-text-shadow:1px 1px 0px #6B5344;-moz-text-shadow:1px 1px 0px #6B5344;text-shadow:1px 1px 0px #6B5344;}
+		#documenter_sidebar ul{border-top:1px solid #30251F;}
+		#documenter_sidebar ul a{border-top:1px solid #6B5344;border-bottom:1px solid #30251F;color:#F77825;}
+		#documenter_sidebar ul a:hover{background:#45352C;color:#CDB380;border-top:1px solid #45352C;}
+		#documenter_sidebar ul a.current{background:#45352C;color:#CDB380;border-top:1px solid #45352C;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+	</style>
+	
+</head>
+<body class="documenter-project-admin-box">
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"></a>
+		<ul id="documenter_nav">
+			<li><a class="current" href="#documenter_cover">Start</a></li>
+				
+			<li><a href="#installation" title="Installation">Installation</a></li>
+			<li><a href="#application_structure" title="Application Structure">Application Structure</a></li>
+			<li><a href="#charts" title="Charts">Charts</a>
+				<ul>
+					<li><a href="#charts_morris_charts">Morris charts</a>
+					<li><a href="#charts_chart_js">Chart js</a>
+					<li><a href="#charts_flot_charts">Flot charts</a>
+					<li><a href="#charts_easypiecharts">Easypiecharts</a>
+					<li><a href="#charts_gauge_charts">Gauge charts</a>
+					<li><a href="#charts_sparkline">Sparkline</a>
+				</ul>
+			</li>
+			<li><a href="#css_files" title="CSS Files">CSS Files</a></li>
+			<li><a href="#icons" title="Icons">Icons</a>
+				<ul>
+					<li><a href="#icons_glyphicons">Glyphicons</a>
+					<li><a href="#icons_weather_icons">Weather icons</a>
+					<li><a href="#icons_font_awesome">Font awesome</a>
+				</ul>
+			</li>
+			<li><a href="#additional_angular_scripts" title="Additional Angular scripts">Additional Angular scripts</a>
+				<ul>
+					<li><a href="#additional_angular_scripts_angular_bootstrap_ui">Angular Bootstrap UI</a>
+					<li><a href="#additional_angular_scripts_app_todo">App todo</a>
+					<li><a href="#additional_angular_scripts_nested_lists_angular_ui_tree">Nested lists / Angular Ui Tree</a>
+				</ul>
+			</li>
+			<li><a href="#forms" title="Forms">Forms</a>
+				<ul>
+					<li><a href="#forms_controllers_nbspform_validation">Controllers : &nbsp;Form validation</a>
+				</ul>
+			</li>
+
+		</ul>
+		<div id="documenter_copyright">Copyright Joao Garin 2015<br>
+		made with the <a href="http://rxa.li/documenter">Documenter v2.0</a> 
+		</div>
+	</div>
+	<div id="documenter_content">
+	<section id="documenter_cover">
+	<h1>Admin Box</h1>
+	<h2>Angular js administration theme</h2>
+	<div id="documenter_buttons">
+		
+	</div>
+	<hr>
+	<ul>
+	<li>created: 11/12/2014</li>
+	<li>latest update: 02/20/2015</li>
+	<li>by: Joao Garin</li>
+	<li><a href="http://joaogarin.com/angularadmin">joaogarin.com/angularadmin</a></li>
+	<li>email: <a href="mailto:&#106;&#111;&#97;&#111;&#46;&#103;&#97;&#114;&#105;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#106;&#111;&#97;&#111;&#46;&#103;&#97;&#114;&#105;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+	</ul>
+	<p>Thank you for buying the theme</p>
+	</section>
+	
+	<section id="installation">
+	<div class="page-header"><h3>Installation</h3><hr class="notop"></div>
+<h2>
+	Installing</h2>
+<p>
+	To deloy the theme simply put the files into your webserver (ex : www.example.com) and navigate to it through the browser</p>
+<p>
+	&nbsp;</p>
+<h2>
+	Changing and deploying</h2>
+<p>
+	The theme comes with grunt.js integration and bower so in order to have an optimised installation the recommended way is buy performing the grunt and bower tasks described bellow.</p>
+<h3>
+	Development</h3>
+<p>
+	For development purposed javascript files and css files will not be compressed in order to be able to debug and find easily where any issue is.</p>
+<h3>
+	Testing</h3>
+<p>
+	The theme contains a test grunt task using jshint to go trough the code and find possible issues with the code.</p>
+<h3>
+	Production / Minified&nbsp;</h3>
+<p>
+	Minified task compresses css files, js files, compiles html templates in to javascript all in order to fully optimize the final application and make it as fast and reliable as possible.</p>
+<p>
+	&nbsp;</p>
+<h2>
+	How to perform the grunt tasks :&nbsp;</h2>
+<p>
+	To perform the grunt tasks you will need the following things installed in either your local maching (recommended) or on the webserver, depending where you are performing the tasks. For more information on grunt follow this link :&nbsp;<a href="http://gruntjs.com/">http://gruntjs.com/</a></p>
+<p>
+	1 ) Install node.js on your maching. It provides also installations for all other platforms :&nbsp;<a href="http://nodejs.org/download/">http://nodejs.org/download/</a></p>
+<p>
+	On Ubuntu running the sudo apt-get install nodejs might run into problems as the version available in the package manager is not supported. For more info check :&nbsp;<a href="http://stackoverflow.com/questions/12913141/installing-from-npm-fails">http://stackoverflow.com/questions/12913141/installing-from-npm-fails</a></p>
+<p>
+	2 )&nbsp;Before setting up Grunt ensure that your <a href="https://www.npmjs.org/">npm</a> is installed and up-to-date by running npm update -g npm (this might require sudo on certain systems). To install on linux you can run :<strong>&nbsp;sudo apt-get install npm</strong></p>
+<p>
+	2 ) Install grunt Command line interface (CLI) by following :&nbsp;<a href="http://gruntjs.com/getting-started">http://gruntjs.com/getting-started</a></p>
+<p>
+	3 ) make sure all packages are installed by running in your application root folder the following : <strong>sudo&nbsp;npm install</strong></p>
+<p>
+	4 ) Enable all dependencies by running : bower install</p>
+<p>
+	5 ) Run the task you want :</p>
+<ul>
+	<li>
+		grunt dev (grunt --force dev for forcing erros to pass)</li>
+	<li>
+		grunt test&nbsp;(grunt --force test for forcing erros to pass)</li>
+	<li>
+		grunt minified&nbsp;(grunt --force minified for forcing erros to pass)</li>
+</ul>
+<p>
+	This will compile &nbsp;the scripts in the application (app, controllers, directives, services, all extra scripts like all the charting libraries etc) and put them into one single js file and one single css file inside the destination folder in this case &quot;<strong>dist</strong>&quot;.</p>
+<p>
+	After that simply push your root files and the dist folder into the webserver and you are done! You have a full compressed and optimized site running.</p>
+<p>
+	Files contained in the compressed application :&nbsp;</p>
+<ul>
+	<li>
+		index.html</li>
+	<li>
+		images</li>
+	<li>
+		fonts</li>
+	<li>
+		dist</li>
+</ul>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+</section>
+<section id="application_structure">
+	<div class="page-header"><h3>Application Structure</h3><hr class="notop"></div>
+<p>
+	The application is organized in a way that is easy to fnd and change any script, separating the logic on controllers, directives, services and external libraries.</p>
+<p>
+	The HTML templates are also separate using angular-route to map between templates for a more performant and clean structure. Next are described all parts of the application and what to find in each of these parts :&nbsp;</p>
+<p>
+	&nbsp;</p>
+<h3>
+	index.html</h3>
+<p>
+	<img alt="" src="images/html.png"></p>
+<p>
+	Contians all &nbsp;the main includes, the overall sctructure of the page. Here is where lies the main imports for javscript and css, font, and HTML dom representation. Templates of specific pages are not present here but imported using <a href="https://docs.angularjs.org/api/ng/directive/ngInclude">ng-include</a></p>
+<h3>
+	Styles&nbsp;</h3>
+<p>
+	In this folder are included the stylesheets for the application. whenever you want to make changes to the style of the application you can make them here. These files are included to be compressed in the Gruntfile.js where they will be minified and compressed and imported into the &quot;<strong>dist</strong>&quot; folder.</p>
+<h3>
+	Scripts</h3>
+<p>
+	In this folder are included all external libraries to be used by the &nbsp;theme, angular scripts, jquery, underscore, chartjs and all other libraries are imported from this folder. This folder <strong>does not contain app specific files but only external libraries.&nbsp;</strong>These files are included to be minified in the Gruntfile.js where they will be minified and compiled &nbsp;togheter with the app specific files into one single javascript file.</p>
+<h3>
+	Images</h3>
+<p>
+	This is the folder where all images are stored.</p>
+<h3>
+	Fonts</h3>
+<p>
+	The fonts directory contains fonts for the application. The fonts include the font awesome icons and glyphicons as well as the weather icons.</p>
+<h3>
+	App</h3>
+<p>
+	The app directory is where the Angular app resides. here are all the templates, directives, controllers,main app file and services. The app directory contains 4 javascript files :&nbsp;</p>
+<ul>
+	<li>
+		app.js - The main app javascript file</li>
+	<li>
+		controllers.js - Where all the controllers are located</li>
+	<li>
+		directives.js - Where all the directives are located</li>
+	<li>
+		services.js - Where all the services are located</li>
+</ul>
+<p>
+	It also contains a &quot;<strong>views</strong>&quot; folder. This folder contains the templates for each view in the app. You can check which view corresponds to each path by &nbsp;looking at the app <strong>.config</strong> method in the app.js file.</p>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+</section>
+<section id="charts">
+	<div class="page-header"><h3>Charts</h3><hr class="notop"></div>
+<p>
+	The application includes different libraries to handle the charting and graphs. here will be explained each one and how they are built, how they can be changed or adapted.</p>
+<p>
+	&nbsp;</p>
+<h4 id="charts_morris_charts">Morris charts</h4>
+<p>
+	Morris charts (<a href="http://morrisjs.github.io/morris.js/">http://morrisjs.github.io/morris.js/</a>) is an excelent library for dynamic interactive charts. It contains different charts like :&nbsp;</p>
+<ul>
+	<li>
+		Line charts</li>
+	<li>
+		Area charts</li>
+	<li>
+		bar charts</li>
+	<li>
+		Stacked bar charts</li>
+	<li>
+		Doughnut bar charts</li>
+</ul>
+<p>
+	A special directive and controller was created for morris charts, it makes it very simple to include a chart in a view, provide the data from the controller and make it &nbsp;rendered using a custom directive. The following sample displays a line morris chart :</p>
+<pre>
+ &lt;div morris-chart data-data=&quot;simpleData&quot; data-type=&quot;line&quot; data-xkey=&quot;year&quot; data-ykeys=&#39;[&quot;value&quot;]&#39; data labels=&#39;[&quot;Value&quot;]&#39; data-line-colors=&#39;[&quot;#2693E9&quot;]&#39; data-line-width=&quot;3&quot;&gt;&lt;/div&gt;</pre>
+<p>
+	There are like mentioned different types of charts specified here in the <strong>data-type </strong>attribute :&nbsp;</p>
+<ul>
+	<li>
+		line</li>
+	<li>
+		area</li>
+	<li>
+		bar</li>
+	<li>
+		donut</li>
+</ul>
+<p>
+	You can find information on the morris charts data in the controller&nbsp;<strong>morrisChartCtrl</strong></p>
+<p>
+	&nbsp;</p>
+<h4 id="charts_chart_js">Chart js</h4>
+<p>
+	Chartjs (<a href="http://www.chartjs.org/">http://www.chartjs.org/</a>) is a simple yet effective charting library, easy to use and &nbsp;get started it provides different types of charts based on canvas. It does not provide interaction with the charts but provides a simple and clean way of representing easy data in several types of charts</p>
+<ul>
+	<li>
+		Line</li>
+	<li>
+		Bar</li>
+	<li>
+		Radar</li>
+	<li>
+		Polar</li>
+	<li>
+		Pie</li>
+	<li>
+		Donut</li>
+</ul>
+<p>
+	A special directive and controller was created for chartjs, it makes it very simple to include a chart in a view, provide the data from the controller and make it &nbsp;rendered using a custom directive. The following sample displays a line <strong>chartjs</strong> chart :&nbsp;</p>
+<pre>
+&lt;chart class=&quot;chartjs&quot; data-data=&quot;chartjsBar&quot; data-type=&quot;Bar&quot; value=&quot;myChart&quot;&gt;&lt;/chart&gt;</pre>
+<p>
+	In the example data is comming from the controller <strong>chartjsCtrl</strong> in the scope variable <strong>chartjsBar</strong></p>
+<p>
+	&nbsp;</p>
+<h4 id="charts_flot_charts">Flot charts</h4>
+<p>
+	Flotcharts (<a href="http://www.flotcharts.org/">http://www.flotcharts.org/</a>) is a very complete charting library. it provides simple interactions with the chartings, and very different options and customizations to the charts. There are different types of flotcharts :&nbsp;</p>
+<ul>
+	<li>
+		Line</li>
+	<li>
+		Realtime</li>
+	<li>
+		Line and area</li>
+	<li>
+		Stacked bar</li>
+	<li>
+		Pie&nbsp;</li>
+	<li>
+		Doughnut</li>
+</ul>
+<p>
+	In the theme a directive and a controller was created for the flotcharts. The following example represents a chart where data is comming from &nbsp;the flotchart controller and displayed in the flotchart custom directive :&nbsp;</p>
+<pre>
+ &lt;div data-flot-chart data-data=&quot;line1.data&quot; data-options=&quot;line1.options&quot; style=&quot;width: 100%; height: 300px;&quot;&gt;&lt;/div&gt;</pre>
+<p>
+	In the example data is comming from the controller&nbsp;<strong>flotChartCtrl</strong>&nbsp;in the scope variable<strong>&nbsp;<span style="line-height: 19px;">line1.data</span></strong></p>
+<p>
+	&nbsp;</p>
+<h4 id="charts_easypiecharts">Easypiecharts</h4>
+<p>
+	Easypiecharts (<a href="https://github.com/rendro/easy-pie-chart/">https://github.com/rendro/easy-pie-chart/</a>) provides a way &quot;to draw simple, animated pie charts for single values&quot;. It is a simple representation of simple data in a very attractive way and easy to build.</p>
+<p>
+	In the theme there is a custom directive and a controller to build easypiecharts like in the following example :</p>
+<pre>
+&lt;div easypiechart options=&quot;easypie1.options&quot; percent=&quot;easypie1.percent&quot; class=&quot;easypiechart&quot;&gt;
+      &lt;span class=&quot;pie-percent&quot; ng-bind=&quot;easypie1.percent&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;</pre>
+<div>
+	In the example data is comming from the controller&nbsp;<strong>chartingCtrl</strong>&nbsp;in the scope variable<strong>&nbsp;<span style="line-height: 19px;">easypie1.&nbsp;</span></strong><span style="line-height: 19px;">It also contains a number in the middle wich will be the value represented in the center of the chart.</span></div>
+<div>
+	&nbsp;</div>
+<h4 id="charts_gauge_charts">Gauge charts</h4>
+<div>
+	Gauge charts are a type of chart that can represent a percentage as a means of how much is reached. In the theme a custom directive and a controller are included to represent gauge charts.</div>
+<div>
+	&nbsp;</div>
+<div>
+	In the next example we can see how to build a gauge chart with the custom directive :&nbsp;</div>
+<div>
+	&nbsp;</div>
+<div>
+	<pre>
+&lt;canvas data-gauge-chart data-gauge-data=&quot;gauge1.gaugeData&quot; data-gauge-options=&quot;gauge1.gaugeOptions&quot; style=&quot;width: 220px; height: 110px; &quot;&gt;&lt;/canvas&gt;</pre>
+</div>
+<div>
+	In the example data is comming from the controller&nbsp;<strong>gaugeCtrl</strong>&nbsp;in the scope variable<strong>&nbsp;<span style="line-height: 19px;">gauge1.</span></strong></div>
+<div>
+	&nbsp;</div>
+<h4 id="charts_sparkline">Sparkline</h4>
+<div>
+	Sparkline is a library for making small inline charts with data provided in the HTML element or via javascript. It has different types of charts and represents them a small sized elements that can be usefull to several widgets.</div>
+<div>
+	&nbsp;</div>
+<div>
+	The following example shows how to build a sparkline chart :&nbsp;</div>
+<div>
+	&nbsp;</div>
+<div>
+	<pre>
+&lt;span data-sparkline data-spark-data=&quot;simpleChart1.sparkData&quot; data-spark-options=&quot;simpleChart1.sparkOptions&quot;&gt;&lt;/span&gt;</pre>
+	<div>
+		In the example data is comming from the controller&nbsp;<strong>sparklineCtrl</strong>&nbsp;in the scope variable<strong>&nbsp;<span style="line-height: 19px;">simpleChart1.</span></strong></div>
+</div>
+<div>
+	&nbsp;</div>
+</section>
+<section id="css_files">
+	<div class="page-header"><h3>CSS Files</h3><hr class="notop"></div>
+<p>
+	In the theme there is a single CSS files inside the &quot;styles&quot; folder. In this file &quot;main.css&quot; you can find all the style for the theme including some overrides to bootstrap&#39;s default styles.</p>
+<p>
+	In the begginig of the file you will find a &nbsp;table of contents containing the main sections of this file.</p>
+<p>
+	If you would like to edit a specific section of the site, simply find the appropriate label in the CSS file (style.css), and then scroll down until you find the appropriate style that needs to be edited. For example for changing the default button style :&nbsp;</p>
+<pre>
+/************************************
+5 - Buttons and Links
+*************************************/
+
+.btn {
+
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+...</pre>
+<div>
+	The theme uses bootstrap so most of the CSS is coming directly from bootstrap.css files imported, if you want to change these styles you could override any class inside the style.css file.</div>
+<div>
+	&nbsp;</div>
+<div>
+	For more information on bootstrap see <a href="http://getbootstrap.com/">http://getbootstrap.com/</a></div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp;</div>
+</section>
+<section id="icons">
+	<div class="page-header"><h3>Icons</h3><hr class="notop"></div>
+<p>
+	The theme includes different libraries for displaying icons. You can find these libraries inside &nbsp;the &quot;fonts&quot; folder in the themes root folder.</p>
+<p>
+	&nbsp;</p>
+<h4 id="icons_glyphicons">Glyphicons</h4>
+<p>
+	The theme includes the glyphicons from bootstrap css for Icon. You can include icons anywhere on the template choosing from the different icons of bootstrap.</p>
+<pre>
+&lt;span class=&quot;glyphicon glyphicon-asterisk&quot;&gt;&lt;/span&gt;</pre>
+<p>
+	You can find all the icons in&nbsp;<a href="http://getbootstrap.com/components/">http://getbootstrap.com/components/</a></p>
+<p>
+	&nbsp;</p>
+<h4 id="icons_weather_icons">Weather icons</h4>
+<p>
+	For displaying weather icons the API from&nbsp;<a href="http://erikflowers.github.io/weather-icons/">http://erikflowers.github.io/weather-icons/</a>&nbsp;is used. It is a simple easy to use icon font generator that simillar to font awesome displays icons based on a &lt;i&gt; tag.</p>
+<pre>
+&lt;i class=&quot;wi-day-cloudy-gusts&quot;&gt;&lt;/i&gt;</pre>
+<p>
+	You can find all the icons in&nbsp;<a href="http://erikflowers.github.io/weather-icons/">http://erikflowers.github.io/weather-icons/</a></p>
+<p>
+	&nbsp;</p>
+<h4 id="icons_font_awesome">Font awesome</h4>
+<p>
+	The theme includes the fontawesome library for Icon generation. You can include icons anywhere on the template choosing from the great API that is fontawesome. &nbsp;</p>
+<p>
+	To include an icon on a page simply add the following class elements to a i tag code (eg: facebook icon) &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+<pre>
+&lt;i class=&quot;fa fa-facebook fa-2x&quot;&gt;&lt;/i&gt; </pre>
+<p>
+	For more information on the API see <a href="http://fortawesome.github.io/Font-Awesome/">http://fortawesome.github.io/Font-Awesome/</a></p>
+</section>
+<section id="additional_angular_scripts">
+	<div class="page-header"><h3>Additional Angular scripts</h3><hr class="notop"></div>
+<h4 id="additional_angular_scripts_angular_bootstrap_ui">Angular Bootstrap UI</h4>
+<p>
+	The theme includes the angular bootstrap ui script. This script provides a lot of functionalities through custom directives and controllers that make it incredibely easy to make use of a lot of elements like :&nbsp;</p>
+<ul>
+	<li>
+		Accordions</li>
+	<li>
+		Alerts</li>
+	<li>
+		Buttons</li>
+	<li>
+		Carousel</li>
+	<li>
+		Collapse</li>
+	<li>
+		Datepickers</li>
+	<li>
+		Dropdowns</li>
+	<li>
+		Modals</li>
+	<li>
+		Paginations</li>
+	<li>
+		Popovers</li>
+	<li>
+		Progress bars</li>
+	<li>
+		Ratings</li>
+	<li>
+		Tabs</li>
+	<li>
+		Timepickers</li>
+	<li>
+		Tooltips</li>
+	<li>
+		Typehead</li>
+</ul>
+<p>
+	All &nbsp;this and full documentation for how to use them can be found in&nbsp;<a href="http://angular-ui.github.io/bootstrap/">http://angular-ui.github.io/bootstrap/</a></p>
+<p>
+	&nbsp;</p>
+<h4 id="additional_angular_scripts_app_todo">App todo</h4>
+<p>
+	A todo list is something simple, yet very usefull. The admin theme includes a todo list that is saved on the browser cookies. This makes for a simple solution that can handle your everyday todo&#39;s in a easy and fast way. It is integrated with toastr for notifications via the service.js file in the app directory.</p>
+<p>
+	This todo list is brought throug the script available in&nbsp;<a href="https://github.com/1JS/App-todo">https://github.com/1JS/App-todo</a></p>
+<p>
+	You can find the todo in the views folder of the app under <strong>&quot;tasks&quot; -&gt; tasks.html.&nbsp;</strong>The controller associated with this is the&nbsp;<strong>taskCtrl&nbsp;</strong>pesent in the file controllers.js</p>
+<p>
+	&nbsp;</p>
+<h4 id="additional_angular_scripts_nested_lists_angular_ui_tree">Nested lists / Angular Ui Tree</h4>
+<p>
+	The nested lists is a code sample from&nbsp;<a href="https://github.com/JimLiu/angular-ui-tree">https://github.com/JimLiu/angular-ui-tree</a></p>
+<p>
+	It provides a easy way to organize lists inside of eachother, and attaching events to the js code you can actually perform tasks when a list is put inside another.</p>
+<p>
+	Here is sample of the HTML in the file <strong>nested-lists.html </strong>where a controller&nbsp;<strong>TreeDemoCtrl</strong>&nbsp;is providing the data and populating the tree that is using a template file (also present in this file) to render the HTML.</p>
+<pre>
+&lt;div class=&quot;page&quot; data-ng-controller=&quot;TreeDemoCtrl&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-md-12&quot;&gt;
+            &lt;section class=&quot;panel panel-default&quot;&gt;
+                &lt;div class=&quot;panel-heading&quot;&gt;&lt;strong&gt;&lt;i class=&quot;fa fa-list panel-ico&quot;&gt;&lt;/i&gt;Nested Lists&lt;/strong&gt;&lt;/div&gt;
+                &lt;div class=&quot;panel-body&quot;&gt;
+                    &lt;div ui-tree=&quot;options&quot;&gt;
+                        &lt;ol ui-tree-nodes ng-model=&quot;list&quot; &gt;
+                            &lt;li ng-repeat=&quot;item in list&quot; ui-tree-node ng-include=&quot;&#39;items_renderer.html&#39;&quot;&gt;&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/section&gt; 
+        &lt;/div&gt;
+    &lt;/div&gt;
+...</pre>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+</section>
+<section id="forms">
+	<div class="page-header"><h3>Forms</h3><hr class="notop"></div>
+<p>
+	The theme includes several form elements from different sources and for different functions.</p>
+<p>
+	These elements are included in different sources, and &nbsp;the files where they are included from are :&nbsp;</p>
+<ul>
+	<li>
+		Rating elements -&nbsp;<a href="http://angular-ui.github.io/bootstrap/">http://angular-ui.github.io/bootstrap/</a></li>
+	<li>
+		Switches -<strong> main.css</strong></li>
+	<li>
+		Ui Range sliders&nbsp;</li>
+	<li>
+		Checkboxes and radiobuttons - <strong>main.css</strong></li>
+	<li>
+		Custom selects - <strong>main.css</strong></li>
+	<li>
+		Datapickers -&nbsp;<a href="http://angular-ui.github.io/bootstrap/">http://angular-ui.github.io/bootstrap/</a></li>
+	<li>
+		Timepickers -&nbsp;<a href="http://angular-ui.github.io/bootstrap/">http://angular-ui.github.io/bootstrap/</a></li>
+</ul>
+<p>
+	&nbsp;</p>
+<h4 id="forms_controllers_nbspform_validation">Controllers : &nbsp;Form validation</h4>
+<p>
+	On the form validation page there are some controllers making sure some validations are done on the client side before submitting a form. These controllers are :&nbsp;</p>
+<ul>
+	<li>
+		<strong>formConstraintsCtrl</strong></li>
+	<li>
+		<strong>SigninCrl</strong></li>
+	<li>
+		<strong>signupCtrl</strong></li>
+</ul>
+<p>
+	All these controllers can be found in the file controllers.js</p>
+<p>
+	&nbsp;</p>
+</section>
+
+	</div>
+</body>
+</html>
