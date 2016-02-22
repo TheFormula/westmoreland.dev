@@ -11,13 +11,15 @@ class ProjectsTableSeeder extends Seeder {
 
 		foreach(range(1, 10) as $index)
 		{
-			Projects::create([
-				'title' => $faker->text(100),
+			Project::create([
+				'customer_name' => $faker->text(100),
+				'project_name' => $faker->text(100),
 				'address' => $faker->address(),
 				'latitude' => $faker->randomFloat(null, 18.005611, 48.987386),
 				'longitude' => $faker->randomFloat(null, -124.626080, -62.361014),
 				'description' => $faker->text(200),
 				'hashtag' => '#' . $faker->unique()->word(),
+				'category_id' => Category::orderByRaw('RAND()')->first()->id,
 				'date_started' => $faker->date()
 			]);
 		}

@@ -11,9 +11,12 @@
                 <tr>
 
                     <th>Date Started</th>
-                    <th>Title</th>
+                    <th>Customer Name</th>
+                    <th>Project Name</th>
                     <th>Address</th>
                     <th>Hashtag</th>
+                    <th>Cateogry</th>
+                    <th>Actions</th>
 
                 </tr>
 
@@ -25,9 +28,11 @@
                     <tr>
 
                         <td>{{{ $project->date_started }}}</td>
-                        <td>{{{ $project->title }}}</td>
+                        <td>{{{ $project->customer_name }}}</td>
+                        <td>{{{ $project->project_name }}}</td>
                         <td>{{{ $project->address }}}</td>
                         <td>{{{ $project->hashtag }}}</td>
+                        <td>{{{ $project->category->name }}}</td>
                         <td>
                             <a href="#" class="remove-project" data-project-id="{{{ $project->id }}}">
                                 <i class="fa fa-trash"></i>

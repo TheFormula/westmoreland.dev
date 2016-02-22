@@ -23,7 +23,7 @@ class HomeController extends BaseController {
 	public function getJobs()
 	{
 
-		$jobs = Projects::all();
+		$jobs = Project::all();
 
 		foreach ($jobs as $job) {
 			$job->rendered_html = $job->html();

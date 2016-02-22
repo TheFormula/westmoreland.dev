@@ -31,7 +31,12 @@
             <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
-                        <p class="company-name">Westmoreland</p>
+                        <div class="dropdown profile-element">
+                            <p class="company-name">Westmoreland</p>
+                        </div>
+                        <div class="logo-element">
+
+                        </div>
                     </li>
                     <li class="active">
                         <a href="#">
@@ -73,6 +78,9 @@
         <div id="page-wrapper" class="gray-bg dashbard-1">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
                             <span class="m-r-sm text-muted welcome-message">Welcome to Westmoreland Admin Section.</span>
@@ -86,6 +94,13 @@
 
                 </nav>
             </div>
+
+            @if (Session::has('successMessage'))
+                <div class="alert alert-success dif-col">{{{ Session::get('successMessage') }}}</div>
+            @endif
+            @if (Session::has('errorMessage'))
+                <div class="alert alert-danger dif-col">{{{ Session::get('errorMessage') }}}</div>
+            @endif
 
             @yield('content')
 
