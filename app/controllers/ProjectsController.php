@@ -9,7 +9,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$projects = Project::all();
+		$projects = Project::paginate(10);
 
 
 		return View::make('admin.projects')->with('projects', $projects);
@@ -23,7 +23,8 @@ class ProjectsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('admin.create');
+		$categories = Category::all()->lists('name', 'id');
+		return View::make('admin.create')->with('categories', $categories);
 	}
 
 
@@ -58,7 +59,9 @@ class ProjectsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$project = Project::find($id);
+		$categories = Category::all()->lists('name', 'id');
+		return View::make('admin.edit')->with(['project' => $project, 'categories' => $categories]);
 	}
 
 
@@ -70,7 +73,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		return $this->validateAndSave();
+		return $this->validateAndSave($id);
 	}
 
 
@@ -82,7 +85,11 @@ class ProjectsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$project = Project::find($id);
+		$project->delete();
+
+		Session::flash('successMessage', 'Project was successfully delete');
+		return Redirect::action('ProjectsController@index');
 	}
 
 
@@ -113,15 +120,16 @@ class ProjectsController extends \BaseController {
 
 		$project->customer_name = Input::get('customer_name');
 		$project->project_name = Input::get('project_name');
-		$project->address = Input::get('project_address');
+		$project->address = Input::get('address');
 		$project->latitude = Input::get('latitude');
 		$project->longitude = Input::get('longitude');
 		$project->description = Input::get('description');
-		$project->hashtag = Input::get('project_hashtag');
+		$project->hashtag = Input::get('hashtag');
 		$project->date_started = Input::get('date_started');
-		$project->category_id = Input::get('project_category_id');
+		$project->category_id = Input::get('category_id');
 		$project->save();
 
+		Session::flash('successMessage', 'Project was successfully saved');
 		return Redirect::action('ProjectsController@index');
 	}
 

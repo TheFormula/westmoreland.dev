@@ -11,7 +11,7 @@
 
 	<div class="row  border-bottom white-bg dashboard-header">
 		<div class="col-sm-12">
-			{{ Form::open(['action' => 'ProjectsController@store', 'class' => 'form-horizontal']) }}
+			{{ Form::model($project, ['action' => ['ProjectsController@update', $project->id], 'class' => 'form-horizontal', 'method' => 'PUT']) }}
 			    <p>Enter in the following information for the new project.</p>
 			    <div class="form-group">
 			    	{{ Form::label('customer_name', 'Customer Name', ['class' => 'col-lg-2 control-label']) }}

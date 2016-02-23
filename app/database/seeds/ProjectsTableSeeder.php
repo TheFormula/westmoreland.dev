@@ -9,7 +9,7 @@ class ProjectsTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		foreach(range(1, 100) as $index)
 		{
 			Project::create([
 				'customer_name' => $faker->text(100),

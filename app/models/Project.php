@@ -5,10 +5,10 @@ class Project extends \Eloquent {
 	public static $rules = [
 		'project_name'		=>		'required|max:255',
 		'customer_name'		=>		'required|max:255',
-		'project_address'	=>		'required|max:255',
+		'address'			=>		'required|max:255',
 		'latitude'			=>		'required|numeric',
 		'longitude'			=>		'required|numeric',
-		'project_hashtag'	=>		'required',
+		'hashtag'			=>		'required',
 		'date_started'		=>		'date'
 	];
 
@@ -21,7 +21,7 @@ class Project extends \Eloquent {
 
 	public function getDateStartedAttribute($value)
 	{
-	    $utc = Carbon::createFromFormat('F j, Y', $value);
+	    $utc = Carbon::parse($value);
 	    return $utc->setTimezone('America/Chicago');
 	}
 

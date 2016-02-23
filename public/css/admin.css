@@ -3,3 +3,11 @@
 	font-weight: bold;
 	color: white;
 }
+
+.remove-project {
+	color: red;
+}
+
+.edit-project {
+	color: green;
+}

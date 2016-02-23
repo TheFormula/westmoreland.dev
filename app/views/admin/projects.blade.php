@@ -3,7 +3,9 @@
 @section('content')
     <div class="row  border-bottom white-bg dashboard-header">
 
-        <!-- content goes here -->
+        <div class="text-center">
+        	{{ $projects->links() }}
+        </div>
         <table class="table table-striped">
 
             <thead>
@@ -27,13 +29,16 @@
                 @foreach($projects as $project)
                     <tr>
 
-                        <td>{{{ $project->date_started }}}</td>
+                        <td>{{{ $project->date_started->format('F j, Y') }}}</td>
                         <td>{{{ $project->customer_name }}}</td>
                         <td>{{{ $project->project_name }}}</td>
                         <td>{{{ $project->address }}}</td>
                         <td>{{{ $project->hashtag }}}</td>
                         <td>{{{ $project->category->name }}}</td>
                         <td>
+                            <a href="{{{ action('ProjectsController@edit', $project->id) }}}" class="edit-project">
+                                <i class="fa fa-pencil"></i>
+                            </a>
                             <a href="#" class="remove-project" data-project-id="{{{ $project->id }}}">
                                 <i class="fa fa-trash"></i>
                             </a>
@@ -45,6 +50,9 @@
             </tbody>
 
         </table>
+        <div class="text-center">
+        	{{ $projects->links() }}
+        </div>
         {{ Form::open(array('action' => array('ProjectsController@destroy', null), 'method' => 'delete', 'id' => 'formDeleteProject')) }}
 		{{ Form::close() }}
 
