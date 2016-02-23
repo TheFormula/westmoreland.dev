@@ -22,8 +22,15 @@ class HomeController extends BaseController {
 
 	public function getJobs()
 	{
+		$min_lat = Input::get('min_lat');
+		$max_lat = Input::get('max_lat');
+		$min_lng = Input::get('min_lng');
+		$max_lng = Input::get('max_lng');
 
-		$jobs = Project::all();
+		$jobs = Project::where('latitude', '>=', $min_lat)
+					   ->where('latitude', '<=', $max_lat)
+					   ->where('longitude', '>=', $min_lng)
+					   ->where('longitude', '<=', $max_lng)->get();
 
 		foreach ($jobs as $job) {
 			$job->rendered_html = $job->html();
