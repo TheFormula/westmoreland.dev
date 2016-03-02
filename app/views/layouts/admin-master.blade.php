@@ -38,26 +38,26 @@
 
                         </div>
                     </li>
-                    <li class="active">
+                    <li class="{{{ (Request::is('admin/projects*')) ? 'active' : ''  }}}">
                         <a href="#">
                             <i class="fa fa-gavel"></i>
                             <span class="nav-label">Projects</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li class="active"><a href="{{{ action('ProjectsController@index') }}}">View Projects</a></li>
-                            <li><a href="{{{ action('ProjectsController@create') }}}">Add New Project</a></li>
+                            <li class="{{{ (Request::is('admin/projects')) ? 'active' : ''  }}}"><a href="{{{ action('ProjectsController@index') }}}">View Projects</a></li>
+                            <li class="{{{ (Request::is('admin/projects/create')) ? 'active' : ''  }}}"><a href="{{{ action('ProjectsController@create') }}}">Add New Project</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{{ (Request::is('admin/customers*')) ? 'active' : ''  }}}">
                         <a href="#">
                             <i class="fa fa-user"></i>
-                            <span class="nav-label">Contacts</span>
+                            <span class="nav-label">Customers</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#">View Contacts</a></li>
-                            <li><a href="#">Add New Contact</a></li>
+                            <li class="{{{ (Request::is('admin/customers')) ? 'active' : ''  }}}"><a href="{{{ action('CustomersController@index') }}}">View Customers</a></li>
+                            <li class="{{{ (Request::is('admin/customers/create')) ? 'active' : ''  }}}"><a href="{{{ action('CustomersController@create') }}}">Add New Customer</a></li>
                         </ul>
                     </li>
                     <li>
