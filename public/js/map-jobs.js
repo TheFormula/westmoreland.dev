@@ -6,11 +6,36 @@ var markers = [];
 function init() {
 
     mapOptions = {
+        center: new google.maps.LatLng(37.142803,-94.727784),
         zoom: 4,
-        center: {lat: 39.8282, lng: -98.5795}
-    };
-    mapElement = document.getElementById('map');
+        zoomControl: true,
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.DEFAULT,
+        },
+        disableDoubleClickZoom: false,
+        mapTypeControl: false,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        },
+        scaleControl: false,
+        scrollwheel: false,
+        panControl: false,
+        streetViewControl: false,
+        draggable : false,
+        overviewMapControl: true,
+        overviewMapControlOptions: {
+            opened: false,
+        },
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"administrative.country","elementType":"geometry.fill","stylers":[{"color":"#171441"}]},{"featureType":"administrative.country","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"visibility":"on"}]},{"featureType":"administrative.province","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#000000"}]},{"featureType":"administrative.neighborhood","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.land_parcel","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.land_parcel","elementType":"geometry.fill","stylers":[{"color":"#171441"}]},{"featureType":"landscape","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#b4882e"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"color":"#9a751b"}]},{"featureType":"landscape.natural","elementType":"all","stylers":[{"visibility":"on"},{"color":"#b4882e"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"color":"#b4882e"}]},{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"landscape.natural.landcover","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#b4882e"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry.fill","stylers":[{"color":"#b4882e"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"road","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#0f252e"},{"lightness":17}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#171441"}]},{"featureType":"water","elementType":"labels.text","stylers":[{"visibility":"off"}]}],
+    }
+    mapElement = document.getElementById('westmoreland-map');
     map = new google.maps.Map(mapElement, mapOptions);
+
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+        clearMarkers();
+        showMarkers();
+    });
 }
 
 function clearMarkers() {
@@ -72,9 +97,4 @@ function showMarkers() {
     // In the ajax callback delete the current markers and add new markers
 }
 
-init();
-
-google.maps.event.addListener(map, 'zoom_changed', function() {
-    clearMarkers();
-    showMarkers();
-});
+google.maps.event.addDomListener(window, 'load', init);

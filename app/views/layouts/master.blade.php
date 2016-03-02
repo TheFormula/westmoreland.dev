@@ -1,15 +1,66 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	@yield('top-script')
+	<meta charset="utf-8">
+
+	<title>Westmoreland Builders</title>
+	<meta name="description" content="Westmoreland Builders">
+	<meta name="author" content="SitePoint">
+
+	<link rel="stylesheet" href="/css/w-style.css?v=1.0\\">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+  @yield('top-script')
 </head>
+
 <body>
+
+	<header class="w-header">
+		<img class="logo" src="/img/westmoreland-logo.svg" />
+		<nav>
+			<ul>
+				<li>
+					<a href="">text</a>
+				</li>
+				<li>
+					<a href="">text</a>
+				</li>
+				<li>
+					<a href="">link</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
 	@yield('content')
 
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<footer class="w-footer">
+		<div class="w-footer-content flex-container">
+			<div class="flex-left col-2">
+				<h3>Contact Westmoreland Builders</h3>
+				<address>
+					Dallas Office<br/>
+					1597 Hart Street<br/>
+					Southlake, TX 76092<br/>
+					<a href="tel:817.416.4741">817.416.4741</a>
+				</address>
+
+			</div>
+			<div class="flex-right col-2 flex-container w-social">
+				<img src="/img/instagram.png" />
+				<img src="/img/linkedin.png" />
+				<img src="/img/facebook.png" />
+				<img src="/img/twitter.png" />
+			</div>
+		</div>
+		<div class="footnote">© 2016 Westmoreland Builders | All Rights Reserved.</div>
+	</footer>
 	@yield('bottom-script')
 </body>
 </html>
