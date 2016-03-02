@@ -15,3 +15,4 @@ Route::get('/', 'HomeController@welcome');
 Route::get('/ajax/get-jobs', 'HomeController@getJobs');
 
 Route::resource('/admin/projects', 'ProjectsController');
+Route::resource('/admin/customers', 'CustomersController');
