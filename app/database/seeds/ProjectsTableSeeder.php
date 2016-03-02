@@ -12,7 +12,7 @@ class ProjectsTableSeeder extends Seeder {
 		foreach(range(1, 100) as $index)
 		{
 			Project::create([
-				'customer_name' => $faker->text(100),
+				'customer_id' => Customer::orderByRaw('RAND()')->first()->id,
 				'project_name' => $faker->text(100),
 				'address' => $faker->address(),
 				'latitude' => $faker->randomFloat(null, 18.005611, 48.987386),

@@ -24,7 +24,19 @@ class ProjectsController extends \BaseController {
 	public function create()
 	{
 		$categories = Category::all()->lists('name', 'id');
-		return View::make('admin.create')->with('categories', $categories);
+		$customers = Customer::all()->lists('name', 'id');
+		return View::make('admin.create')->with(['categories' => $categories, 'customers' => $customers]);
+	}
+
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function createCustomer()
+	{
+		return View::make('admin.customers.create');
 	}
 
 
@@ -36,6 +48,17 @@ class ProjectsController extends \BaseController {
 	public function store()
 	{
 		return $this->validateAndSave();
+	}
+
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function storeCustomer()
+	{
+		return $this->validateAndSaveCustomer();
 	}
 
 
@@ -61,7 +84,8 @@ class ProjectsController extends \BaseController {
 	{
 		$project = Project::find($id);
 		$categories = Category::all()->lists('name', 'id');
-		return View::make('admin.edit')->with(['project' => $project, 'categories' => $categories]);
+		$customers = Customer::all()->lists('name', 'id');
+		return View::make('admin.edit')->with(['project' => $project, 'categories' => $categories, 'customers' => $customers]);
 	}
 
 
@@ -93,10 +117,48 @@ class ProjectsController extends \BaseController {
 	}
 
 
+	protected function validateAndSaveCustomer($id = null)
+	{
+		$validator = Validator::make(Input::all(), Customer::$rules);
+
+		Log::info(Input::all());
+
+	    // attempt validation
+	    if ($validator->fails())
+	    {
+	    	Session::flash('errorMessage', 'Your customer was not saved');
+	        // validation failed, redirect to the post create page with validation errors and old inputs
+	        return Redirect::back()->withInput()->withErrors($validator);
+	    }
+
+		if ($id == null)
+		{
+
+			$customer = new Customer;
+		}
+		else
+		{
+
+			$customer = Customer::find($id);
+		}
+
+		$customer->name = Input::get('name');
+		$customer->save();
+
+		Session::flash('successMessage', 'Customer was successfully saved');
+		return Redirect::action('ProjectsController@index');
+	}
+
+
 	protected function validateAndSave($id = null)
 	{
+		$creating_new_customer = Input::has('create_new_customer');
 
-		$validator = Validator::make(Input::all(), Project::$rules);
+		if ($creating_new_customer) {
+			$validator = Validator::make(Input::all(), Project::$rules_with_customer);
+		} else {
+			$validator = Validator::make(Input::all(), Project::$rules);
+		}
 	    Log::info(Input::all());
 
 	    // attempt validation
@@ -105,6 +167,19 @@ class ProjectsController extends \BaseController {
 	    	Session::flash('errorMessage', 'Your project was not saved');
 	        // validation failed, redirect to the post create page with validation errors and old inputs
 	        return Redirect::back()->withInput()->withErrors($validator);
+	    }
+
+	    if ($creating_new_customer)
+	    {
+
+	    	$customer = new Customer;
+	    	$customer->name = Input::get('customer_name');
+	    	$customer->save();
+	    }
+	    else
+	    {
+
+	    	$customer = Customer::find(Input::get('customer_id'));
 	    }
 
 		if ($id == null)
@@ -118,8 +193,8 @@ class ProjectsController extends \BaseController {
 			$project = Project::find($id);
 		}
 
-		$project->customer_name = Input::get('customer_name');
 		$project->project_name = Input::get('project_name');
+		$project->customer_id = $customer->id;
 		$project->address = Input::get('address');
 		$project->latitude = Input::get('latitude');
 		$project->longitude = Input::get('longitude');

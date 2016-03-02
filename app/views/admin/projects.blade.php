@@ -1,3 +1,7 @@
+<?php
+use Carbon\Carbon;
+?>
+
 @extends('layouts.admin-master')
 
 @section('content')
@@ -29,8 +33,8 @@
                 @foreach($projects as $project)
                     <tr>
 
-                        <td>{{{ $project->date_started->format('F j, Y') }}}</td>
-                        <td>{{{ $project->customer_name }}}</td>
+                        <td>{{{ Carbon::parse($project->date_started)->setTimezone('America/Chicago')->format('F j, Y') }}}</td>
+                        <td>{{{ $project->customer->name }}}</td>
                         <td>{{{ $project->project_name }}}</td>
                         <td>{{{ $project->address }}}</td>
                         <td>{{{ $project->hashtag }}}</td>

@@ -14,12 +14,33 @@
 			{{ Form::open(['action' => 'ProjectsController@store', 'class' => 'form-horizontal']) }}
 			    <p>Enter in the following information for the new project.</p>
 			    <div class="form-group">
-			    	{{ Form::label('customer_name', 'Customer Name', ['class' => 'col-lg-2 control-label']) }}
-
-			        <div class="col-lg-10">
-			        	{{ Form::text('customer_name', null, ['class' => 'form-control', 'id' => 'customer_name', 'placeholder' => 'Customer Name']) }}
-			        	{{ $errors->has('customer_name') ? $errors->first('customer_name', '<p><span class="help-block">:message</span></p>') : '' }}
+			        <div class="col-lg-offset-2 col-lg-10">
+			            <div class="i-checks">
+				            <label>
+				            	<input type="checkbox" id="create_new_customer" value="1">
+				            	Create New Customer
+				            </label>
+			            </div>
 			        </div>
+			    </div>
+			    <div id="new_customer">
+				    <div class="form-group">
+				    	{{ Form::label('customer_name', 'Customer Name', ['class' => 'col-lg-2 control-label']) }}
+
+				        <div class="col-lg-10">
+				        	{{ Form::text('customer_name', null, ['class' => 'form-control', 'id' => 'customer_name', 'placeholder' => 'Customer Name']) }}
+				        	{{ $errors->has('customer_name') ? $errors->first('customer_name', '<p><span class="help-block">:message</span></p>') : '' }}
+				        </div>
+				    </div>
+			    </div>
+			    <div id="old_customer">
+				    <div class="form-group">
+				    	{{ Form::label('customer_id', 'Customer', ['class' => 'col-lg-2 control-label']) }}
+
+				        <div class="col-lg-10">
+				        	{{ Form::select('customer_id', $customers, null, ['class' => 'form-control', 'id' => 'customer_id']) }}
+				        </div>
+				    </div>
 			    </div>
 			    <div class="form-group">
 			    	{{ Form::label('project_name', 'Project Name', ['class' => 'col-lg-2 control-label']) }}
@@ -72,16 +93,6 @@
 			    </div>
 			    <div class="form-group">
 			        <div class="col-lg-offset-2 col-lg-10">
-			            <div class="i-checks">
-				            <label>
-				            	<input type="checkbox">
-				            	Display on Map
-				            </label>
-			            </div>
-			        </div>
-			    </div>
-			    <div class="form-group">
-			        <div class="col-lg-offset-2 col-lg-10">
 			            <button class="btn btn-sm btn-white" type="submit">Save Project</button>
 			        </div>
 			    </div>
@@ -104,6 +115,26 @@
             autoclose: true,
             format: 'yyyy-mm-dd'
         });
+
+		var create_new_customer = $('#create_new_customer').prop('checked');
+		if (create_new_customer) {
+        	$('#old_customer').hide();
+        	$('#new_customer').show();
+		} else {
+			$('#old_customer').show();
+        	$('#new_customer').hide();
+		}
+
+		$('#create_new_customer').on('click', function() {
+			create_new_customer = $(this).prop('checked');
+			if (create_new_customer) {
+	        	$('#old_customer').hide();
+	        	$('#new_customer').show();
+			} else {
+				$('#old_customer').show();
+	        	$('#new_customer').hide();
+			}
+		})
 	</script>
 
 @stop
