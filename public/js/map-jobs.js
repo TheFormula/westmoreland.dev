@@ -22,8 +22,6 @@ function clearMarkers() {
 function showMarkers() {
     bounds = map.getBounds();
 
-    clearMarkers();
-
     // Call you server with ajax passing it the bounds
     $.ajax({
         type: "GET",
@@ -43,7 +41,12 @@ function showMarkers() {
                 var lng = Number(this.longitude);
 
                 var infowindow = new google.maps.InfoWindow({
-                    content: this.rendered_html
+                    content: this.rendered_html,
+                    disableAutoPan: false,
+                    zIndex: null,
+                    closeBoxMargin: "12px 4px 2px 2px",
+                    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+                    infoBoxClearance: new google.maps.Size(1, 1)
                 });
 
 
@@ -71,4 +74,7 @@ function showMarkers() {
 
 init();
 
-google.maps.event.addListener(map, 'idle', showMarkers);
+google.maps.event.addListener(map, 'zoom_changed', function() {
+    clearMarkers();
+    showMarkers();
+});
