@@ -11,13 +11,13 @@
 
 	<div class="row  border-bottom white-bg dashboard-header">
 		<div class="col-sm-12">
-			{{ Form::model($project, ['action' => ['ProjectsController@update', $project->id], 'class' => 'form-horizontal', 'method' => 'PUT']) }}
+			{{ Form::model($project, ['action' => ['ProjectsController@update', $project->id], 'class' => 'form-horizontal', 'method' => 'PUT', 'files' => true]) }}
 			    <p>Enter in the following information for the new project.</p>
 			    <div class="form-group">
 			        <div class="col-lg-offset-2 col-lg-10">
 			            <div class="i-checks">
 				            <label>
-				            	<input type="checkbox" id="create_new_customer" value="1">
+				            	{{ Form::checkbox('create_new_customer', 1, false, ['id' => 'create_new_customer']) }}
 				            	Create New Customer
 				            </label>
 			            </div>
@@ -30,6 +30,14 @@
 				        <div class="col-lg-10">
 				        	{{ Form::text('customer_name', null, ['class' => 'form-control', 'id' => 'customer_name', 'placeholder' => 'Customer Name']) }}
 				        	{{ $errors->has('customer_name') ? $errors->first('customer_name', '<p><span class="help-block">:message</span></p>') : '' }}
+				        </div>
+				    </div>
+				    <div class="form-group">
+				    	{{ Form::label('customer_image', 'Customer Image', ['class' => 'col-lg-2 control-label']) }}
+
+				        <div class="col-lg-10">
+				        	{{ Form::file('customer_image', null, ['class' => 'form-control datepicker', 'id' => 'customer_image']) }}
+				        	{{ $errors->has('customer_image') ? $errors->first('customer_image', '<p><span class="help-block">:message</span></p>') : '' }}
 				        </div>
 				    </div>
 			    </div>
@@ -60,6 +68,14 @@
 			    </div>
 			    {{ Form::hidden('latitude', null, ['id' => 'latitude']) }}
 			    {{ Form::hidden('longitude', null, ['id' => 'longitude']) }}
+			    <div class="form-group">
+			    	{{ Form::label('image', 'Project Image', ['class' => 'col-lg-2 control-label']) }}
+
+			        <div class="col-lg-10">
+			        	{{ Form::file('image', null, ['class' => 'form-control datepicker', 'id' => 'image']) }}
+			        	{{ $errors->has('image') ? $errors->first('image', '<p><span class="help-block">:message</span></p>') : '' }}
+			        </div>
+			    </div>
 			    <div class="form-group">
 			    	{{ Form::label('date_started', 'Date Started', ['class' => 'col-lg-2 control-label']) }}
 

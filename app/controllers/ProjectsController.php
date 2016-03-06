@@ -12,7 +12,7 @@ class ProjectsController extends \BaseController {
 		$projects = Project::paginate(10);
 
 
-		return View::make('admin.projects')->with('projects', $projects);
+		return View::make('admin.projects.index')->with('projects', $projects);
 	}
 
 
@@ -25,18 +25,7 @@ class ProjectsController extends \BaseController {
 	{
 		$categories = Category::all()->lists('name', 'id');
 		$customers = Customer::all()->lists('name', 'id');
-		return View::make('admin.create')->with(['categories' => $categories, 'customers' => $customers]);
-	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function createCustomer()
-	{
-		return View::make('admin.customers.create');
+		return View::make('admin.projects.create')->with(['categories' => $categories, 'customers' => $customers]);
 	}
 
 
@@ -48,17 +37,6 @@ class ProjectsController extends \BaseController {
 	public function store()
 	{
 		return $this->validateAndSave();
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function storeCustomer()
-	{
-		return $this->validateAndSaveCustomer();
 	}
 
 
@@ -85,7 +63,7 @@ class ProjectsController extends \BaseController {
 		$project = Project::find($id);
 		$categories = Category::all()->lists('name', 'id');
 		$customers = Customer::all()->lists('name', 'id');
-		return View::make('admin.edit')->with(['project' => $project, 'categories' => $categories, 'customers' => $customers]);
+		return View::make('admin.projects.edit')->with(['project' => $project, 'categories' => $categories, 'customers' => $customers]);
 	}
 
 
@@ -117,48 +95,22 @@ class ProjectsController extends \BaseController {
 	}
 
 
-	protected function validateAndSaveCustomer($id = null)
-	{
-		$validator = Validator::make(Input::all(), Customer::$rules);
-
-		Log::info(Input::all());
-
-	    // attempt validation
-	    if ($validator->fails())
-	    {
-	    	Session::flash('errorMessage', 'Your customer was not saved');
-	        // validation failed, redirect to the post create page with validation errors and old inputs
-	        return Redirect::back()->withInput()->withErrors($validator);
-	    }
-
-		if ($id == null)
-		{
-
-			$customer = new Customer;
-		}
-		else
-		{
-
-			$customer = Customer::find($id);
-		}
-
-		$customer->name = Input::get('name');
-		$customer->save();
-
-		Session::flash('successMessage', 'Customer was successfully saved');
-		return Redirect::action('ProjectsController@index');
-	}
-
-
 	protected function validateAndSave($id = null)
 	{
 		$creating_new_customer = Input::has('create_new_customer');
 
 		if ($creating_new_customer) {
-			$validator = Validator::make(Input::all(), Project::$rules_with_customer);
+			$rules = Project::$rules_with_customer;
 		} else {
-			$validator = Validator::make(Input::all(), Project::$rules);
+			$rules = Project::$rules;
 		}
+
+		if ($id != null) {
+			$rules['hashtag'] .= ',' . $id;
+		}
+
+		$validator = Validator::make(Input::all(), $rules);
+
 	    Log::info(Input::all());
 
 	    // attempt validation
@@ -174,7 +126,17 @@ class ProjectsController extends \BaseController {
 
 	    	$customer = new Customer;
 	    	$customer->name = Input::get('customer_name');
+
+	    	$customerImage = Input::file('customer_image');
+	    	$destinationPath = 'img/uploads/';
+	    	$imageExtension = $customerImage->getClientOriginalExtension();
+	    	$fileName = uniqid() . '.' . $imageExtension;
+	    	$customerImage->move($destinationPath, $fileName);
+
+	    	$customer->image = $destinationPath . $fileName;
+
 	    	$customer->save();
+
 	    }
 	    else
 	    {
@@ -191,6 +153,19 @@ class ProjectsController extends \BaseController {
 		{
 
 			$project = Project::find($id);
+		}
+
+		if (Input::hasFile('image'))
+		{
+			$projectImage = Input::file('image');
+	    	$destinationPath = 'img/uploads/';
+	    	$imageExtension = $projectImage->getClientOriginalExtension();
+	    	$fileName = uniqid() . '.' . $imageExtension;
+	    	$projectImage->move($destinationPath, $fileName);
+
+	    	$project->image = "/" . $destinationPath . $fileName;
+		} else if ($project->image == null) {
+			$project->image = 'http://placehold.it/225x150';
 		}
 
 		$project->project_name = Input::get('project_name');

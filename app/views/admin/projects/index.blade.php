@@ -16,12 +16,12 @@ use Carbon\Carbon;
 
                 <tr>
 
-                    <th>Date Started</th>
+                    <th class="hidden-xs hidden-sm hidden-md">Date Started</th>
                     <th>Customer Name</th>
                     <th>Project Name</th>
-                    <th>Address</th>
+                    <th class="hidden-xs hidden-sm">Address</th>
                     <th>Hashtag</th>
-                    <th>Cateogry</th>
+                    <th class="hidden-xs">Cateogry</th>
                     <th>Actions</th>
 
                 </tr>
@@ -33,12 +33,12 @@ use Carbon\Carbon;
                 @foreach($projects as $project)
                     <tr>
 
-                        <td>{{{ Carbon::parse($project->date_started)->setTimezone('America/Chicago')->format('F j, Y') }}}</td>
+                        <td class="hidden-xs hidden-sm hidden-md">{{{ Carbon::parse($project->date_started)->setTimezone('America/Chicago')->format('F j, Y') }}}</td>
                         <td>{{{ $project->customer->name }}}</td>
                         <td>{{{ $project->project_name }}}</td>
-                        <td>{{{ $project->address }}}</td>
+                        <td class="hidden-xs hidden-sm">{{{ $project->address }}}</td>
                         <td>{{{ $project->hashtag }}}</td>
-                        <td>{{{ $project->category->name }}}</td>
+                        <td class="hidden-xs">{{{ $project->category->name }}}</td>
                         <td>
                             <a href="{{{ action('ProjectsController@edit', $project->id) }}}" class="edit-project">
                                 <i class="fa fa-pencil"></i>

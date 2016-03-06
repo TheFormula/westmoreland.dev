@@ -6,8 +6,9 @@ class Project extends \Eloquent {
 		'address'			=>		'required|max:255',
 		'latitude'			=>		'required|numeric',
 		'longitude'			=>		'required|numeric',
-		'hashtag'			=>		'required',
-		'date_started'		=>		'date'
+		'hashtag'			=>		'required|unique:projects,hashtag',
+		'date_started'		=>		'date',
+		'image'				=>		'image'
 	];
 
 	public static $rules_with_customer = [
@@ -16,8 +17,10 @@ class Project extends \Eloquent {
 		'address'			=>		'required|max:255',
 		'latitude'			=>		'required|numeric',
 		'longitude'			=>		'required|numeric',
-		'hashtag'			=>		'required',
-		'date_started'		=>		'date'
+		'hashtag'			=>		'required|unique:projects,hashtag',
+		'date_started'		=>		'date',
+		'image'				=>		'image',
+		'customer_image'	=>		'image'
 	];
 
 	protected $fillable = ['project_name', 'address', 'description', 'hashtag', 'date_started', 'latitude', 'longitude'];
