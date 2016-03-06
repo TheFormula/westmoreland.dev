@@ -11,8 +11,7 @@ class CustomersController extends \BaseController {
 	{
 		$customers = Customer::paginate(10);
 
-
-		return View::make('admin.customers')->with('customers', $customers);
+		return View::make('admin.customers.index')->with('customers', $customers);
 	}
 
 
@@ -34,7 +33,7 @@ class CustomersController extends \BaseController {
 	 */
 	public function store()
 	{
-		return $this->validateAndSaveCustomer();
+		return $this->validateAndSave();
 	}
 
 
@@ -58,8 +57,8 @@ class CustomersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$project = Customer::find($id);
-		return View::make('admin.edit')->with(['customer' => $customer]);
+		$customer = Customer::find($id);
+		return View::make('admin.customers.edit')->with(['customer' => $customer]);
 	}
 
 
@@ -117,6 +116,20 @@ class CustomersController extends \BaseController {
 		}
 
 		$customer->name = Input::get('name');
+
+		if (Input::hasFile('customer_image'))
+		{
+			$customerImage = Input::file('customer_image');
+	    	$destinationPath = 'img/uploads/';
+	    	$imageExtension = $customerImage->getClientOriginalExtension();
+	    	$fileName = uniqid() . '.' . $imageExtension;
+	    	$customerImage->move($destinationPath, $fileName);
+
+	    	$customer->image = $destinationPath . $fileName;
+	    } else if ($customer->image == null) {
+	    	$customer->image = 'http://placehold.it/225x150';
+	    }
+
 		$customer->save();
 
 		Session::flash('successMessage', 'Customer was successfully saved');
