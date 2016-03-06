@@ -1,5 +1,6 @@
 /bootstrap/compiled.php
 /vendor
+/public/img/uploads
 composer.phar
 .env.*.php
 .env.php
