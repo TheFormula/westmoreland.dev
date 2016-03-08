@@ -12,7 +12,8 @@ class CustomerTableSeeder extends Seeder {
 		foreach(range(1, 10) as $index)
 		{
 			Customer::create([
-				'name' => $faker->unique()->word()
+				'name' => $faker->unique()->word(),
+				'image' => 'http://placehold.it/225x150'
 			]);
 		}
 	}

@@ -20,7 +20,8 @@ class ProjectsTableSeeder extends Seeder {
 				'description' => $faker->text(200),
 				'hashtag' => '#' . $faker->unique()->word(),
 				'category_id' => Category::orderByRaw('RAND()')->first()->id,
-				'date_started' => $faker->date()
+				'date_started' => $faker->date(),
+				'image' => 'http://placehold.it/225x150'
 			]);
 		}
 	}
