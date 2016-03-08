@@ -17,20 +17,13 @@ class HomeController extends BaseController {
 
 	public function welcome()
 	{
-		return View::make('jobs.index');
+		$customers = Customer::where('home_page', '=', 1)->get();
+		return View::make('jobs.index')->with(['customers' => $customers]);
 	}
 
 	public function getJobs()
 	{
-		$min_lat = Input::get('min_lat');
-		$max_lat = Input::get('max_lat');
-		$min_lng = Input::get('min_lng');
-		$max_lng = Input::get('max_lng');
-
-		$jobs = Project::where('latitude', '>=', $min_lat)
-					   ->where('latitude', '<=', $max_lat)
-					   ->where('longitude', '>=', $min_lng)
-					   ->where('longitude', '<=', $max_lng)->get();
+		$jobs = Project::all();
 
 		foreach ($jobs as $job) {
 			$job->rendered_html = $job->html();
