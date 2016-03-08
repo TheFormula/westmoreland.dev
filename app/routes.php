@@ -16,3 +16,7 @@ Route::get('/ajax/get-jobs', 'HomeController@getJobs');
 
 Route::resource('/admin/projects', 'ProjectsController');
 Route::resource('/admin/customers', 'CustomersController');
+
+Route::get('/login', 'UsersController@showLogin');
+Route::post('/login', 'UsersController@doLogin');
+Route::get('/logout', 'UsersController@logout');
