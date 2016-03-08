@@ -47,7 +47,7 @@ use Carbon\Carbon;
         <div class="text-center">
         	{{ $customers->links() }}
         </div>
-        {{ Form::open(array('action' => array('CustomersController@destroy', null), 'method' => 'delete', 'id' => 'formCustomerProject')) }}
+        {{ Form::open(array('action' => array('CustomersController@destroy', null), 'method' => 'delete', 'id' => 'formDeleteCustomer')) }}
 		{{ Form::close() }}
 
     </div>
