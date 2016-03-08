@@ -32,10 +32,7 @@ function init() {
     mapElement = document.getElementById('westmoreland-map');
     map = new google.maps.Map(mapElement, mapOptions);
 
-    google.maps.event.addListener(map, 'zoom_changed', function() {
-        clearMarkers();
-        showMarkers();
-    });
+    showMarkers();
 }
 
 function clearMarkers() {
@@ -45,18 +42,11 @@ function clearMarkers() {
 }
 
 function showMarkers() {
-    bounds = map.getBounds();
 
     // Call you server with ajax passing it the bounds
     $.ajax({
         type: "GET",
         url: "/ajax/get-jobs",
-        data: {
-            min_lat: bounds.R.R,
-            max_lat: bounds.R.j,
-            min_lng: bounds.j.j,
-            max_lng: bounds.j.R
-        },
         success    : function( jobs ) {
             markers = [];
             // get map center
