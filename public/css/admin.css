@@ -4,10 +4,12 @@
 	color: white;
 }
 
-.remove-project {
+.remove-project,
+.remove-customer {
 	color: red;
 }
 
-.edit-project {
+.edit-project,
+.edit-customer {
 	color: green;
 }
