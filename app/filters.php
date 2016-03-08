@@ -43,6 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
+			Session::flash('errorMessage', 'You must be logged in to view this page.');
 			return Redirect::guest('login');
 		}
 	}
