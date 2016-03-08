@@ -15,16 +15,9 @@
 	  	<h2>Who We Serve</h2>
 	  	<p class="text-center">Click Logos To See Client Projects</p>
 	  	<div class="w-clients flex-container flex-all">
-		    <a href=""><img class="w-client-logo" src="http://placehold.it/225x150"></a>
-		    <a href=""><img class="w-client-logo" src="http://placehold.it/225x150"></a>
-		    <a href=""><img class="w-client-logo" src="http://placehold.it/225x150"></a>
-		    <a href=""><img class="w-client-logo" src="http://placehold.it/225x150"></a>
-		    <a href=""><img class="w-client-logo" src="http://placehold.it/225x150"></a>
-		    <a href=""><img class="w-client-logo" src="http://placehold.it/225x150"></a>
-		    <a href=""><img class="w-client-logo" src="http://placehold.it/225x150"></a>
-		    <a href=""><img class="w-client-logo" src="http://placehold.it/225x150"></a>
-		    <a href=""><img class="w-client-logo" src="http://placehold.it/225x150"></a>
-		    <a href=""><img class="w-client-logo" src="http://placehold.it/225x150"></a>
+	  		@foreach($customers as $customer)
+		    	<a href=""><img class="w-client-logo" src="{{{ $customer->image }}}" alt="{{{ $customer->name }}}"></a>
+		    @endforeach
 		</div>
 		<section class="w-about flex-all">
 		    <h2>Who We Are</h2>
