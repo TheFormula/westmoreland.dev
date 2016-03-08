@@ -83,6 +83,11 @@ class CustomersController extends \BaseController {
 	public function destroy($id)
 	{
 		$customer = Customer::find($id);
+
+		if (File::exists($customer->image)) {
+    		File::delete($customer->image);
+    	}
+
 		$customer->delete();
 
 		Session::flash('successMessage', 'Customer was successfully delete');
@@ -119,11 +124,16 @@ class CustomersController extends \BaseController {
 
 		if (Input::hasFile('customer_image'))
 		{
+
 			$customerImage = Input::file('customer_image');
 	    	$destinationPath = 'img/uploads/';
 	    	$imageExtension = $customerImage->getClientOriginalExtension();
 	    	$fileName = uniqid() . '.' . $imageExtension;
 	    	$customerImage->move($destinationPath, $fileName);
+
+	    	if (File::exists($customer->image)) {
+	    		File::delete($customer->image);
+	    	}
 
 	    	$customer->image = $destinationPath . $fileName;
 	    } else if ($customer->image == null) {

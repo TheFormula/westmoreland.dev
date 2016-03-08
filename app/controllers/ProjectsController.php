@@ -88,6 +88,11 @@ class ProjectsController extends \BaseController {
 	public function destroy($id)
 	{
 		$project = Project::find($id);
+
+		if (File::exists($project->image)) {
+    		File::delete($project->image);
+    	}
+
 		$project->delete();
 
 		Session::flash('successMessage', 'Project was successfully delete');
@@ -127,13 +132,23 @@ class ProjectsController extends \BaseController {
 	    	$customer = new Customer;
 	    	$customer->name = Input::get('customer_name');
 
-	    	$customerImage = Input::file('customer_image');
-	    	$destinationPath = 'img/uploads/';
-	    	$imageExtension = $customerImage->getClientOriginalExtension();
-	    	$fileName = uniqid() . '.' . $imageExtension;
-	    	$customerImage->move($destinationPath, $fileName);
+	    	if (Input::hasFile('image'))
+			{
 
-	    	$customer->image = $destinationPath . $fileName;
+		    	$customerImage = Input::file('customer_image');
+		    	$destinationPath = 'img/uploads/';
+		    	$imageExtension = $customerImage->getClientOriginalExtension();
+		    	$fileName = uniqid() . '.' . $imageExtension;
+		    	$customerImage->move($destinationPath, $fileName);
+
+		    	if (File::exists($customer->image)) {
+		    		File::delete($customer->image);
+		    	}
+
+		    	$customer->image = $destinationPath . $fileName;
+		    } else if ($customer->image == null) {
+		    	$customer->image = 'http://placehold.it/225x150';
+		    }
 
 	    	$customer->save();
 
@@ -162,6 +177,10 @@ class ProjectsController extends \BaseController {
 	    	$imageExtension = $projectImage->getClientOriginalExtension();
 	    	$fileName = uniqid() . '.' . $imageExtension;
 	    	$projectImage->move($destinationPath, $fileName);
+
+	    	if (File::exists($project->image)) {
+	    		File::delete($project->image);
+	    	}
 
 	    	$project->image = "/" . $destinationPath . $fileName;
 		} else if ($project->image == null) {
