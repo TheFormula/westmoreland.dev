@@ -1,3 +1,5 @@
-#map {
-	height: 500px;
+img.img-responsive {
+	max-width: 100%;
+	width: initial;
+	display: inline-block;
 }

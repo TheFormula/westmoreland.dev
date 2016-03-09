@@ -9,6 +9,7 @@
 	<meta name="author" content="SitePoint">
 
 	<link rel="stylesheet" href="/css/w-style.css?v=1.0\\">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
 
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
