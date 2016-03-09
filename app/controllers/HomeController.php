@@ -21,15 +21,28 @@ class HomeController extends BaseController {
 		return View::make('jobs.index')->with(['customers' => $customers]);
 	}
 
-	public function getJobs()
+	public function getProjects()
 	{
-		$jobs = Project::all();
+		$projects = Project::all();
 
-		foreach ($jobs as $job) {
-			$job->rendered_html = $job->html();
+		foreach ($projects as $project) {
+			$project->rendered_html = $project->html();
 		}
 
-		return $jobs;
+		return $projects;
+	}
+
+	public function getCustomerProjects()
+	{
+		$customer_id = Input::get('customer_id');
+
+		$projects = Project::where('customer_id', '=', $customer_id)->get();
+
+		foreach ($projects as $project) {
+			$project->rendered_html = $project->html();
+		}
+
+		return $projects;
 	}
 
 }

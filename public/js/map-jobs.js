@@ -41,12 +41,22 @@ function clearMarkers() {
     });
 }
 
-function showMarkers() {
+function showMarkers(customer_id) {
+    var url;
+
+    if (customer_id == undefined) {
+        url = "/ajax/get-projects";
+    } else {
+        url = "/ajax/get-customer-projects"
+    }
 
     // Call you server with ajax passing it the bounds
     $.ajax({
         type: "GET",
-        url: "/ajax/get-jobs",
+        url: url,
+        data: {
+            customer_id: customer_id
+        },
         success    : function( jobs ) {
             markers = [];
             // get map center
@@ -88,3 +98,11 @@ function showMarkers() {
 }
 
 google.maps.event.addDomListener(window, 'load', init);
+
+$('.customers').on('click', function(e) {
+    e.preventDefault();
+    var customer_id = $(this).data('customerId');
+
+    clearMarkers();
+    showMarkers(customer_id);
+})

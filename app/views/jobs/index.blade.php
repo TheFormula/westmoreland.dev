@@ -16,7 +16,7 @@
 	  	<p class="text-center">Click Logos To See Client Projects</p>
 	  	<div class="w-clients flex-container flex-all">
 	  		@foreach($customers as $customer)
-		    	<a href=""><img class="w-client-logo" src="{{{ $customer->image }}}" alt="{{{ $customer->name }}}"></a>
+		    	<a class="customers" data-customer-id="{{{ $customer->id }}}" href=""><img class="w-client-logo" src="{{{ $customer->image }}}" alt="{{{ $customer->name }}}"></a>
 		    @endforeach
 		</div>
 		<section class="w-about flex-all">
