@@ -13,7 +13,8 @@ class CustomerTableSeeder extends Seeder {
 		{
 			Customer::create([
 				'name' => $faker->unique()->word(),
-				'image' => 'http://placehold.it/225x150'
+				'image' => 'http://placehold.it/225x150',
+				'home_page' => 1
 			]);
 		}
 	}
