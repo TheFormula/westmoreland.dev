@@ -24,19 +24,6 @@
 
 	<header class="w-header">
 		<img class="logo" src="/img/westmoreland-logo.svg" />
-		<nav>
-			<ul>
-				<li>
-					<a href="">text</a>
-				</li>
-				<li>
-					<a href="">text</a>
-				</li>
-				<li>
-					<a href="">link</a>
-				</li>
-			</ul>
-		</nav>
 	</header>
 
 	@yield('content')
