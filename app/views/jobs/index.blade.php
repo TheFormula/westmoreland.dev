@@ -10,6 +10,7 @@
 @section('content')
 	<section class="w-map">
 	  	<div id='westmoreland-map'></div>
+	  	<div id="info-window"></div>
 	</section>
 	<section class="w-content">
 	  	<h2>Who We Serve</h2>

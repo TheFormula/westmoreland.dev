@@ -65,14 +65,7 @@ function showMarkers(customer_id) {
                 var lat = Number(this.latitude);
                 var lng = Number(this.longitude);
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: this.rendered_html,
-                    disableAutoPan: false,
-                    zIndex: null,
-                    closeBoxMargin: "12px 4px 2px 2px",
-                    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
-                    infoBoxClearance: new google.maps.Size(1, 1)
-                });
+                var infowindow = this.rendered_html;
 
 
 
@@ -88,7 +81,9 @@ function showMarkers(customer_id) {
 
                 google.maps.event.addListener(marker, 'click', function() {
                     // opens the information window
-                    infowindow.open( map, marker );
+                    $('#info-window').html(infowindow);
+                    $('#info-window').show();
+                    // infowindow.open( map, marker );
                 });
             });
         }

@@ -3,3 +3,7 @@ img.img-responsive {
 	width: initial;
 	display: inline-block;
 }
+
+#info-window {
+	display: none;
+}
