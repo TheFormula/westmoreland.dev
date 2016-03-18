@@ -27,7 +27,7 @@ class Project extends \Eloquent {
 
 	public function html()
 	{
-		return View::make('jobs.default-map')->with('job', $this)->render();
+		return View::make('jobs.map-info')->with('job', $this)->render();
 	}
 
 	public function category()
