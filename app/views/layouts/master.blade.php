@@ -8,7 +8,9 @@
 	<meta name="description" content="Westmoreland Builders">
 	<meta name="author" content="SitePoint">
 
-	<link rel="stylesheet" href="/css/w-style.css?v=1.0\\">
+	<!-- <link rel="stylesheet" href="/css/w-style.css?v=1.0\\"> -->
+	<link rel="stylesheet/less" type="text/css" href="/css/style.less" />
+	<script src="/js/less.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 
   <!--[if lt IE 9]>
