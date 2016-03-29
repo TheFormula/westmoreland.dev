@@ -73,6 +73,7 @@ function showMarkers(customer_id) {
                     map: map,
                     position: {lat: lat, lng: lng},
                     animation: google.maps.Animation.DROP,
+                    icon: '/img/map_marker.png',
                     title: this.title
                 });
 
