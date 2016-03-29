@@ -18,7 +18,8 @@ class HomeController extends BaseController {
 	public function welcome()
 	{
 		$customers = Customer::where('home_page', '=', 1)->get();
-		return View::make('jobs.index')->with(['customers' => $customers]);
+		$about_us = AboutUs::orderBy('id', 'desc')->first();
+		return View::make('jobs.index')->with(['customers' => $customers, 'about_us' => $about_us]);
 	}
 
 	public function getProjects()

@@ -18,6 +18,9 @@ Route::get('/ajax/get-customer-projects', 'HomeController@getCustomerProjects');
 Route::resource('/admin/projects', 'ProjectsController');
 Route::resource('/admin/customers', 'CustomersController');
 
+Route::get('/admin/about-us/edit-current', 'AboutUsController@editCurrent');
+Route::resource('/admin/about-us', 'AboutUsController');
+
 Route::get('/login', 'UsersController@showLogin');
 Route::post('/login', 'UsersController@doLogin');
 Route::get('/logout', 'UsersController@logout');

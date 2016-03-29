@@ -61,14 +61,14 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a class="{{{ (Request::is('admin/about-us*')) ? 'active' : ''  }}}" href="#">
                             <i class="fa fa-info"></i>
                             <span class="nav-label">About Us Information</span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#">View Current About Us Info</a></li>
-                            <li><a href="#">Update About Us Info</a></li>
+                            <li class="{{{ (Request::is('admin/about-us/edit')) ? 'active' : ''  }}}"><a href="{{{ action('AboutUsController@editCurrent') }}}">Edit Current About Us Info</a></li>
+                            <li class="{{{ (Request::is('admin/about-us/create')) ? 'active' : ''  }}}"><a href="{{{ action('AboutUsController@create') }}}">Update About Us Info</a></li>
                         </ul>
                     </li>
                 </ul>
