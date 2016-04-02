@@ -18,6 +18,20 @@ class HomeController extends BaseController {
 	public function welcome()
 	{
 		$customers = Customer::where('home_page', '=', 1)->get();
+
+		$settings = array(
+		    'oauth_access_token' => "2325847243-WsFBJTA18aSPMKhXRzv9aq4BAIMvVKI0iBxJm9M",
+		    'oauth_access_token_secret' => "lXyTLGVIq0Z5jqcjEiqfUqxRNQjSXeQCNRHkCJgmVNrfa",
+		    'consumer_key' => "34kWtY3kIzPt7xtewLrGIuXuZ",
+		    'consumer_secret' => "Sf72BEQnFDmlAY0pGf9C7qUZDidHj4rtf6QcfBzihQVIBC5mGw"
+		);
+
+		$url = 'https://api.twitter.com/1.1/search/tweets.json';
+		$getfield = '?screen_name=J7mbo';
+		$requestMethod = 'GET';
+
+		$twitter = new TwitterAPIExchange($settings);
+
 		$about_us = AboutUs::orderBy('id', 'desc')->first();
 		return View::make('jobs.index')->with(['customers' => $customers, 'about_us' => $about_us]);
 	}

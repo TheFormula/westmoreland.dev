@@ -109,6 +109,7 @@ class ProjectsController extends \BaseController {
 	protected function validateAndSave($id = null)
 	{
 		$creating_new_customer = Input::has('create_new_customer');
+		$creating_new_category = Input::has('create_new_category');
 
 		if ($creating_new_customer) {
 			$rules = Project::$rules_with_customer;
@@ -165,6 +166,21 @@ class ProjectsController extends \BaseController {
 	    	$customer = Customer::find(Input::get('customer_id'));
 	    }
 
+	    if ($creating_new_category)
+	    {
+
+	    	$category = new Category;
+	    	$category->name = Input::get('category_name');
+
+	    	$category->save();
+
+	    }
+	    else
+	    {
+
+	    	$category = Category::find(Input::get('category_id'));
+	    }
+
 		if ($id == null)
 		{
 
@@ -201,7 +217,7 @@ class ProjectsController extends \BaseController {
 		$project->description = Input::get('description');
 		$project->hashtag = Input::get('hashtag');
 		$project->date_started = Input::get('date_started');
-		$project->category_id = Input::get('category_id');
+		$project->category_id = $category->id;
 		$project->save();
 
 		Session::flash('successMessage', 'Project was successfully saved');

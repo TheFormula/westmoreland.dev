@@ -17,8 +17,13 @@
 			        <div class="col-lg-offset-2 col-lg-10">
 			            <div class="i-checks">
 				            <label>
+				            @if(count($customers) == 0)
+				            	{{ Form::checkbox('create_new_customer', 1, true, ['id' => 'create_new_customer']) }}
+				            	Create New Customer
+				            @else
 				            	{{ Form::checkbox('create_new_customer', 1, false, ['id' => 'create_new_customer']) }}
 				            	Create New Customer
+				            @endif
 				            </label>
 			            </div>
 			        </div>
@@ -100,12 +105,40 @@
 			        	{{ $errors->has('description') ? $errors->first('description', '<p><span class="help-block">:message</span></p>') : '' }}
 			        </div>
 			    </div>
-			    <div class="form-group">
-			    	{{ Form::label('category_id', 'Category', ['class' => 'col-lg-2 control-label']) }}
 
-			        <div class="col-lg-10">
-			        	{{ Form::select('category_id', $categories, null, ['class' => 'form-control', 'id' => 'category_id']) }}
+			    <div class="form-group">
+			        <div class="col-lg-offset-2 col-lg-10">
+			            <div class="i-checks">
+				            <label>
+				            @if(count($categories) == 0)
+				            	{{ Form::checkbox('create_new_category', 1, true, ['id' => 'create_new_category']) }}
+				            	Create New Category
+				            @else
+				            	{{ Form::checkbox('create_new_category', 1, false, ['id' => 'create_new_category']) }}
+				            	Create New Category
+				            @endif
+				            </label>
+			            </div>
 			        </div>
+			    </div>
+			    <div id="new_category">
+				    <div class="form-group">
+				    	{{ Form::label('category_name', 'Category Name', ['class' => 'col-lg-2 control-label']) }}
+
+				        <div class="col-lg-10">
+				        	{{ Form::text('category_name', null, ['class' => 'form-control', 'id' => 'category_name', 'placeholder' => 'Category Name']) }}
+				        	{{ $errors->has('category_name') ? $errors->first('category_name', '<p><span class="help-block">:message</span></p>') : '' }}
+				        </div>
+				    </div>
+			    </div>
+			    <div id="old_category">
+				    <div class="form-group">
+				    	{{ Form::label('category_id', 'Category', ['class' => 'col-lg-2 control-label']) }}
+
+				        <div class="col-lg-10">
+				        	{{ Form::select('category_id', $categories, null, ['class' => 'form-control', 'id' => 'category_id']) }}
+				        </div>
+				    </div>
 			    </div>
 			    <div class="form-group">
 			        <div class="col-lg-offset-2 col-lg-10">
@@ -122,35 +155,6 @@
 
 	<script src="/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 	<script src="/js/form-address-geocode.js"></script>
-	<script type="text/javascript">
-		$('.datepicker').datepicker({
-            todayBtn: "linked",
-            keyboardNavigation: false,
-            forceParse: false,
-            calendarWeeks: true,
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        });
-
-		var create_new_customer = $('#create_new_customer').prop('checked');
-		if (create_new_customer) {
-        	$('#old_customer').hide();
-        	$('#new_customer').show();
-		} else {
-			$('#old_customer').show();
-        	$('#new_customer').hide();
-		}
-
-		$('#create_new_customer').on('click', function() {
-			create_new_customer = $(this).prop('checked');
-			if (create_new_customer) {
-	        	$('#old_customer').hide();
-	        	$('#new_customer').show();
-			} else {
-				$('#old_customer').show();
-	        	$('#new_customer').hide();
-			}
-		})
-	</script>
+	<script src="/js/project-form.js"></script>
 
 @stop
