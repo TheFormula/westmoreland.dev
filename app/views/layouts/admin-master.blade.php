@@ -68,7 +68,7 @@
                         </a>
                         <ul class="nav nav-second-level collapse">
                             <li class="{{{ (Request::is('admin/about-us/edit')) ? 'active' : ''  }}}"><a href="{{{ action('AboutUsController@editCurrent') }}}">Edit Current About Us Info</a></li>
-                            <li class="{{{ (Request::is('admin/about-us/create')) ? 'active' : ''  }}}"><a href="{{{ action('AboutUsController@create') }}}">Update About Us Info</a></li>
+                            <li class="{{{ (Request::is('admin/about-us/create')) ? 'active' : ''  }}}"><a href="{{{ action('AboutUsController@create') }}}">Create New About Us Info</a></li>
                         </ul>
                     </li>
                 </ul>
