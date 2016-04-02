@@ -62,6 +62,7 @@ function showMarkers(customer_id) {
             // get map center
             // geocode if needed(prefer lat lng)
             $.each(jobs, function(){
+                var job = this;
                 var lat = Number(this.latitude);
                 var lng = Number(this.longitude);
 
@@ -84,6 +85,7 @@ function showMarkers(customer_id) {
                     // opens the information window
                     $('#info-window').html(infowindow);
                     $('#info-window').show();
+                    getTweets(job.hashtag);
                     // infowindow.open( map, marker );
                 });
             });
@@ -91,6 +93,23 @@ function showMarkers(customer_id) {
     });
 
     // In the ajax callback delete the current markers and add new markers
+}
+
+function getTweets(hashtag) {
+    var url = '/ajax/get-project-tweets/' + hashtag.substr(1);
+    $.ajax({
+        type: "GET",
+        url: url,
+        success    : function( tweets ) {
+            var social_media = $('#social-media');
+            tweets = JSON.parse(tweets);
+            tweets.statuses.forEach(function(tweet) {
+                console.log(tweet)
+                var content = "<p>" + moment(tweet.created_at).format('MMMM Do YYYY') + " - " + tweet.text + " - <a target='_blank' href='https://twitter.com/" + tweet.user.screen_name + "'>@" + tweet.user.screen_name + "</a></p>";
+                social_media.append(content);
+            })
+        }
+    });
 }
 
 google.maps.event.addDomListener(window, 'load', init);

@@ -30,5 +30,6 @@
 @stop
 
 @section('bottom-script')
+	<script src="/js/moment.js"></script>
 	<script src="/js/map-jobs.js"></script>
 @stop
