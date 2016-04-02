@@ -19,19 +19,6 @@ class HomeController extends BaseController {
 	{
 		$customers = Customer::where('home_page', '=', 1)->get();
 
-		$settings = array(
-		    'oauth_access_token' => "2325847243-WsFBJTA18aSPMKhXRzv9aq4BAIMvVKI0iBxJm9M",
-		    'oauth_access_token_secret' => "lXyTLGVIq0Z5jqcjEiqfUqxRNQjSXeQCNRHkCJgmVNrfa",
-		    'consumer_key' => "34kWtY3kIzPt7xtewLrGIuXuZ",
-		    'consumer_secret' => "Sf72BEQnFDmlAY0pGf9C7qUZDidHj4rtf6QcfBzihQVIBC5mGw"
-		);
-
-		$url = 'https://api.twitter.com/1.1/search/tweets.json';
-		$getfield = '?screen_name=J7mbo';
-		$requestMethod = 'GET';
-
-		$twitter = new TwitterAPIExchange($settings);
-
 		$about_us = AboutUs::orderBy('id', 'desc')->first();
 		return View::make('jobs.index')->with(['customers' => $customers, 'about_us' => $about_us]);
 	}
@@ -58,6 +45,27 @@ class HomeController extends BaseController {
 		}
 
 		return $projects;
+	}
+
+	public function getProjectTweets($hashtag)
+	{
+
+		$settings = array(
+		    'oauth_access_token' => $_ENV['TWITTER_ACCESS_TOKEN'],
+		    'oauth_access_token_secret' => $_ENV['TWITTER_SECRET_ACCESS_TOKEN'],
+		    'consumer_key' => $_ENV['TWITTER_CUSTOMER_KEY'],
+		    'consumer_secret' => $_ENV['TWITTER_CUSTOMER_SECRET'],
+		);
+
+		$url = 'https://api.twitter.com/1.1/search/tweets.json';
+		$getfield = '?q=' . $hashtag;
+		$requestMethod = 'GET';
+
+		$twitter = new TwitterAPIExchange($settings);
+
+		$tweets = $twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();
+
+		return $tweets;
 	}
 
 }
