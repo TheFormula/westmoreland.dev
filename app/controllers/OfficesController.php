@@ -1,6 +1,6 @@
 <?php
 
-class AboutUsController extends \BaseController {
+class OfficesController extends \BaseController {
 
 	public function __construct()
 	{
@@ -15,7 +15,10 @@ class AboutUsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$offices = Office::paginate(10);
+
+
+		return View::make('admin.offices.index')->with('offices', $offices);
 	}
 
 
@@ -26,7 +29,7 @@ class AboutUsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('admin.about-us.create');
+		return View::make('admin.offices.create');
 	}
 
 
@@ -59,11 +62,10 @@ class AboutUsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function editCurrent()
+	public function edit($id)
 	{
-		$about_us = AboutUs::orderBy('id', 'desc')->first();
-
-		return View::make('admin.about-us.edit')->with(['about_us' => $about_us]);
+		$office = Office::find($id);
+		return View::make('admin.offices.edit')->with(['office' => $office]);
 	}
 
 
@@ -75,7 +77,7 @@ class AboutUsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		return $this->validateAndSave($id);
 	}
 
 
@@ -87,42 +89,47 @@ class AboutUsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$office = Office::find($id);
+
+		$office->delete();
+
+		Session::flash('successMessage', 'Office was successfully delete');
+		return Redirect::action('OfficesController@index');
 	}
 
 
-	protected function validateAndSave()
+	protected function validateAndSave($id = null)
 	{
-		$validator = Validator::make(Input::all(), AboutUs::$rules);
+		$validator = Validator::make(Input::all(), $rules);
 
-		Log::info(Input::all());
+	    Log::info(Input::all());
 
 	    // attempt validation
 	    if ($validator->fails())
 	    {
-	    	Session::flash('errorMessage', 'Your about us information was not saved');
+	    	Session::flash('errorMessage', 'Your office was not saved');
 	        // validation failed, redirect to the post create page with validation errors and old inputs
 	        return Redirect::back()->withInput()->withErrors($validator);
 	    }
 
-		$about_us = new AboutUs;
+	    if ($id == null)
+		{
 
-		$about_us->body = trim( Input::get('body') );
+			$office = new Office;
+		}
+		else
+		{
 
-		$formatted_body = '<p>' . $about_us->body . '</p>';
+			$office = Office::find($id);
+		}
 
-		$formatted_body = preg_replace("/[\r\n]+/", "\n", $formatted_body);
+		$office->address = Input::get('address');
+		$office->latitude = Input::get('latitude');
+		$office->longitude = Input::get('longitude');
+		$office->save();
 
-		$formatted_body = preg_replace("/(\n)/", "</p><p>", $formatted_body);
-
-		// format information with html tags
-
-		$about_us->formatted_body = $formatted_body;
-
-		$about_us->save();
-
-		Session::flash('successMessage', 'About us information was successfully saved');
-		return Redirect::action('AboutUsController@editCurrent');
+		Session::flash('successMessage', 'Office was successfully saved');
+		return Redirect::action('OfficesController@index');
 	}
 
 

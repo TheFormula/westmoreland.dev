@@ -17,6 +17,7 @@ Route::get('/ajax/get-customer-projects', 'HomeController@getCustomerProjects');
 Route::get('/ajax/get-project-tweets/{hashtag}', 'HomeController@getProjectTweets');
 
 Route::resource('/admin/projects', 'ProjectsController');
+Route::resource('/admin/offices', 'OfficesController');
 Route::resource('/admin/customers', 'CustomersController');
 
 Route::get('/admin/about-us/edit-current', 'AboutUsController@editCurrent');

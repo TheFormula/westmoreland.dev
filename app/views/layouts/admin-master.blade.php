@@ -49,6 +49,17 @@
                             <li class="{{{ (Request::is('admin/projects/create')) ? 'active' : ''  }}}"><a href="{{{ action('ProjectsController@create') }}}">Add New Project</a></li>
                         </ul>
                     </li>
+                    <li class="{{{ (Request::is('admin/offices*')) ? 'active' : ''  }}}">
+                        <a href="#">
+                            <i class="fa fa-building"></i>
+                            <span class="nav-label">Offices</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li class="{{{ (Request::is('admin/offices')) ? 'active' : ''  }}}"><a href="{{{ action('OfficesController@index') }}}">View Offices</a></li>
+                            <li class="{{{ (Request::is('admin/offices/create')) ? 'active' : ''  }}}"><a href="{{{ action('OfficesController@create') }}}">Add New Office</a></li>
+                        </ul>
+                    </li>
                     <li class="{{{ (Request::is('admin/customers*')) ? 'active' : ''  }}}">
                         <a href="#">
                             <i class="fa fa-user"></i>
