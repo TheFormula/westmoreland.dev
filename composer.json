@@ -7,7 +7,6 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"fzaninotto/faker": "^1.5",
-		"j7mbo/twitter-api-php": "dev-master"
 	},
 	"require-dev": {
 	    "way/generators": "~2.0"
