@@ -7,7 +7,7 @@ class ProjectsTableSeeder extends Seeder {
 
 	public function run()
 	{
-		DB::unprepared(file_get_contents('database/seeds/west_db.sql'));
+		DB::unprepared(file_get_contents('app/database/seeds/west_db.sql'));
 	}
 
 }
