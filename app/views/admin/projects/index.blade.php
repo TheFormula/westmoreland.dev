@@ -38,7 +38,7 @@ use Carbon\Carbon;
                         <td>{{{ $project->project_name }}}</td>
                         <td class="hidden-xs hidden-sm">{{{ $project->address }}}</td>
                         <td>{{{ $project->hashtag }}}</td>
-                        <td class="hidden-xs">{{{ $project->category->name }}}</td>
+                        <td class="hidden-xs">{{{ ($project->category) ? $project->category->name : "No Category" }}}</td>
                         <td>
                             <a href="{{{ action('ProjectsController@edit', $project->id) }}}" class="edit-project">
                                 <i class="fa fa-pencil"></i>
