@@ -17,11 +17,11 @@ class CreateProjectsTable extends Migration {
 			$table->increments('id');
 			$table->string('project_name');
 			$table->string('customer_name');
-			$table->string('address');
-			$table->float('latitude');
-			$table->float('longitude');
+			$table->string('address')->nullable();
+			$table->double('latitude', 15, 12)->nullable();
+			$table->double('longitude', 15, 12)->nullable();
 			$table->text('description');
-			$table->string('hashtag')->unique();
+			$table->string('hashtag')->unique()->nullable();
 			$table->date('date_started');
 			$table->timestamps();
 		});
