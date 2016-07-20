@@ -26,3 +26,11 @@ Route::resource('/admin/about-us', 'AboutUsController');
 Route::get('/login', 'UsersController@showLogin');
 Route::post('/login', 'UsersController@doLogin');
 Route::get('/logout', 'UsersController@logout');
+
+Route::get('/update-dates', function() {
+	$projects = Project::all();
+	foreach ($projects as $project) {
+		$project->date_started = date('Y-m-d');
+		$project->save();
+	}
+});
