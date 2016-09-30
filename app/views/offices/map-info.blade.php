@@ -1,5 +1,5 @@
 <div class="w-map-overlay">
-	<img src="/img/close.png">
+	<img src="/img/close.png" class="close-window">
 	<img src="{{{ $office->image }}}" alt="Westmoreland Office">
 	<div class="w-map-overlay-header">
 		<p>Phone: {{{ $office->phone_number }}}</p>
