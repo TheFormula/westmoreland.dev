@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@welcome');
 Route::get('/ajax/get-projects', 'HomeController@getProjects');
+Route::get('/ajax/get-offices', 'HomeController@getOffices');
 Route::get('/ajax/get-customer-projects', 'HomeController@getCustomerProjects');
 Route::get('/ajax/get-project-tweets/{hashtag}', 'HomeController@getProjectTweets');
 
