@@ -60,7 +60,7 @@ use Carbon\Carbon;
         </table>
         <div class="text-center">
             @if(Input::has('search'))
-        	   {{ $projects->appends(array('search' => Input::get*('search')))->links() }}
+        	   {{ $projects->appends(array('search' => Input::get('search')))->links() }}
             @else
                {{ $projects->links() }}
             @endif
