@@ -91,6 +91,10 @@ class OfficesController extends \BaseController {
 	{
 		$office = Office::find($id);
 
+		if (File::exists($office->image)) {
+    		File::delete($office->image);
+    	}
+
 		$office->delete();
 
 		Session::flash('successMessage', 'Office was successfully delete');
@@ -100,7 +104,7 @@ class OfficesController extends \BaseController {
 
 	protected function validateAndSave($id = null)
 	{
-		$validator = Validator::make(Input::all(), $rules);
+		$validator = Validator::make(Input::all(), Office::$rules);
 
 	    Log::info(Input::all());
 
@@ -124,8 +128,27 @@ class OfficesController extends \BaseController {
 		}
 
 		$office->address = Input::get('address');
+		$office->phone_number = Input::get('phone_number');
 		$office->latitude = Input::get('latitude');
 		$office->longitude = Input::get('longitude');
+
+		if (Input::hasFile('image'))
+		{
+			$officeImage = Input::file('image');
+	    	$destinationPath = 'img/uploads/';
+	    	$imageExtension = $officeImage->getClientOriginalExtension();
+	    	$fileName = uniqid() . '.' . $imageExtension;
+	    	$officeImage->move($destinationPath, $fileName);
+
+	    	if (File::exists($office->image)) {
+	    		File::delete($office->image);
+	    	}
+
+	    	$office->image = "/" . $destinationPath . $fileName;
+		} else if ($office->image == null) {
+			$office->image = 'http://placehold.it/225x150';
+		}
+
 		$office->save();
 
 		Session::flash('successMessage', 'Office was successfully saved');

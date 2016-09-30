@@ -32,12 +32,50 @@ function init() {
     mapElement = document.getElementById('westmoreland-map');
     map = new google.maps.Map(mapElement, mapOptions);
 
+    showOffices();
     showMarkers();
 }
 
 function clearMarkers() {
     markers.forEach(function(marker) {
         marker.setMap(null);
+    });
+}
+
+function showOffices() {
+    $.ajax({
+        type: "GET",
+        url: '/ajax/get-offices',
+        data: { },
+        success    : function( offices ) {
+            markers = [];
+            // get map center
+            // geocode if needed(prefer lat lng)
+            $.each(offices, function(){
+                var office = this;
+                var lat = Number(this.latitude);
+                var lng = Number(this.longitude);
+
+                var infowindow = this.rendered_html;
+
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: {lat: lat, lng: lng},
+                    animation: google.maps.Animation.DROP,
+                    icon: '/img/map_marker_w.png',
+                    title: 'Westmoreland Office'
+                });
+
+                // places the marker in an array
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    // opens the information window
+                    $('#info-window').html(infowindow);
+                    $('#info-window').show();
+                    // infowindow.open( map, marker );
+                });
+            });
+        }
     });
 }
 
@@ -104,7 +142,6 @@ function getTweets(hashtag) {
             var social_media = $('#social-media');
             tweets = JSON.parse(tweets);
             tweets.statuses.forEach(function(tweet) {
-                console.log(tweet)
                 var content = "<p>" + moment(tweet.created_at).format('MMMM Do YYYY') + " - " + tweet.text + " - <a target='_blank' href='https://twitter.com/" + tweet.user.screen_name + "'>@" + tweet.user.screen_name + "</a></p>";
                 social_media.append(content);
             })

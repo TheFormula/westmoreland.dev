@@ -10,6 +10,7 @@ function geocodeAddress(address) {
 
 	   		$('#latitude').val(results[0].geometry.location.lat());
 	   		$('#longitude').val(results[0].geometry.location.lng());
+	   		$('form button').removeAttr('disabled');
 	   	} else {
 
 	       	// Show an error message with the status if our request fails
@@ -17,8 +18,12 @@ function geocodeAddress(address) {
 	   	}
 	});
 }
-
-$('#address').on('blur', function() {
+if($('#address').val() == "") {
+	$('form button').attr('disabled', 'disabled');
+}
+$('#address').on('keyup', function() {
+	$('form button').attr('disabled', 'disabled');
+	console.log('changed');
 	var address = $(this).val();
 	geocodeAddress(address);
-})
+});

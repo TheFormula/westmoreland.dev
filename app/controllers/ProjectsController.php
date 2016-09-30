@@ -15,7 +15,12 @@ class ProjectsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$projects = Project::paginate(10);
+		$search_term = Input::get('search');
+		if ($search_term != null) {
+			$projects = Project::searchBy($search_term)->paginate(10);
+		} else {
+			$projects = Project::paginate(10);
+		}
 
 
 		return View::make('admin.projects.index')->with('projects', $projects);

@@ -5,10 +5,14 @@ use Carbon\Carbon;
 @extends('layouts.admin-master')
 
 @section('content')
-    <div class="row  border-bottom white-bg dashboard-header">
-
-        <div class="text-center">
-        	{{ $projects->links() }}
+    <div class="row border-bottom white-bg dashboard-header">
+        <div class="col-sm-12">
+            <form action="{{ action('ProjectsController@index') }}" class="form-inline">
+                <div class="form-group">
+                    <label for="search">Search Projects</label>
+                    <input type="text" class="form-control" id="search" name="search" value="{{{ Input::get('search') }}}" placeholder="Search Projects">
+                </div>
+            </form>
         </div>
         <table class="table table-striped">
 
@@ -55,7 +59,11 @@ use Carbon\Carbon;
 
         </table>
         <div class="text-center">
-        	{{ $projects->links() }}
+            @if(Input::has('search'))
+        	   {{ $projects->appends(array('search' => Input::get*('search')))->links() }}
+            @else
+               {{ $projects->links() }}
+            @endif
         </div>
         {{ Form::open(array('action' => array('ProjectsController@destroy', null), 'method' => 'delete', 'id' => 'formDeleteProject')) }}
 		{{ Form::close() }}

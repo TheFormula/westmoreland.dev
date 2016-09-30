@@ -16,8 +16,8 @@ class CreateOfficesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('address');
-			$table->float('latitude');
-			$table->float('longitude');
+			$table->double('latitude', 15, 12)->nullable();
+			$table->double('longitude', 15, 12)->nullable();
 			$table->timestamps();
 		});
 	}

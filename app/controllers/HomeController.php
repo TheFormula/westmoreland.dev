@@ -34,6 +34,17 @@ class HomeController extends BaseController {
 		return $projects;
 	}
 
+	public function getOffices()
+	{
+		$offices = Office::all();
+
+		foreach ($offices as $office) {
+			$office->rendered_html = $office->html();
+		}
+
+		return $offices;
+	}
+
 	public function getCustomerProjects()
 	{
 		$customer_id = Input::get('customer_id');

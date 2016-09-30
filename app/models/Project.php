@@ -39,4 +39,16 @@ class Project extends \Eloquent {
     {
     	return $this->belongsTo('Customer');
     }
+
+    public static function searchBy($search_term)
+    {
+    	$projects = self::join('customers', 'projects.customer_id', '=', 'customers.id')
+						->where('projects.project_name', 'LIKE', '%' . $search_term . '%')
+    					->orWhere('projects.address', 'LIKE', '%' . $search_term . '%')
+    					->orWhere('projects.description', 'LIKE', '%' . $search_term . '%')
+    					->orWhere('projects.hashtag', 'LIKE', '%' . $search_term . '%')
+    					->orWhere('customers.name', 'LIKE', '%' . $search_term . '%');
+
+    	return $projects;
+    }
 }

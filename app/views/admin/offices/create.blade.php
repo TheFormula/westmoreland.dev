@@ -21,6 +21,22 @@
 			        	{{ $errors->has('address') ? $errors->first('address', '<p><span class="help-block">:message</span></p>') : '' }}
 			        </div>
 			    </div>
+			    <div class="form-group">
+			    	{{ Form::label('phone_number', 'Office Phone Number', ['class' => 'col-lg-2 control-label']) }}
+
+			        <div class="col-lg-10">
+			        	{{ Form::text('phone_number', null, ['class' => 'form-control', 'id' => 'phone_number', 'placeholder' => 'Office Phone Number']) }}
+			        	{{ $errors->has('phone_number') ? $errors->first('phone_number', '<p><span class="help-block">:message</span></p>') : '' }}
+			        </div>
+			    </div>
+			    <div class="form-group">
+			    	{{ Form::label('image', 'Office Image', ['class' => 'col-lg-2 control-label']) }}
+
+			        <div class="col-lg-10">
+			        	{{ Form::file('image', null, ['class' => 'form-control', 'id' => 'image']) }}
+			        	{{ $errors->has('image') ? $errors->first('image', '<p><span class="help-block">:message</span></p>') : '' }}
+			        </div>
+			    </div>
 			    {{ Form::hidden('latitude', null, ['id' => 'latitude']) }}
 			    {{ Form::hidden('longitude', null, ['id' => 'longitude']) }}
 			    <div class="form-group">

@@ -36,7 +36,7 @@
 				    	{{ Form::label('customer_image', 'Customer Image', ['class' => 'col-lg-2 control-label']) }}
 
 				        <div class="col-lg-10">
-				        	{{ Form::file('customer_image', null, ['class' => 'form-control datepicker', 'id' => 'customer_image']) }}
+				        	{{ Form::file('customer_image', null, ['class' => 'form-control', 'id' => 'customer_image']) }}
 				        	{{ $errors->has('customer_image') ? $errors->first('customer_image', '<p><span class="help-block">:message</span></p>') : '' }}
 				        </div>
 				    </div>
@@ -72,7 +72,7 @@
 			    	{{ Form::label('image', 'Project Image', ['class' => 'col-lg-2 control-label']) }}
 
 			        <div class="col-lg-10">
-			        	{{ Form::file('image', null, ['class' => 'form-control datepicker', 'id' => 'image']) }}
+			        	{{ Form::file('image', null, ['class' => 'form-control', 'id' => 'image']) }}
 			        	{{ $errors->has('image') ? $errors->first('image', '<p><span class="help-block">:message</span></p>') : '' }}
 			        </div>
 			    </div>
