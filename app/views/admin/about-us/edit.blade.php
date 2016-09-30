@@ -8,7 +8,7 @@
 
 	<div class="row  border-bottom white-bg dashboard-header">
 		<div class="col-sm-12">
-			{{ Form::model($about_us, ['action' => ['AboutUsController@update', $about_us->id], 'class' => 'form-horizontal']) }}
+			{{ Form::model($about_us, ['action' => ['AboutUsController@update', $about_us->id], 'class' => 'form-horizontal', 'method' => 'PUT']) }}
 			    <p>Enter in the following information for the new customer.</p>
 			    <div class="form-group">
 			    	{{ Form::label('body', 'Content', ['class' => 'col-lg-2 control-label']) }}

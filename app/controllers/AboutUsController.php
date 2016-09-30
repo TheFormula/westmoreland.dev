@@ -37,7 +37,8 @@ class AboutUsController extends \BaseController {
 	 */
 	public function store()
 	{
-		return $this->validateAndSave();
+		$about_us = new AboutUs;
+		return $this->validateAndSave($about_us);
 	}
 
 
@@ -75,7 +76,8 @@ class AboutUsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$about_us = AboutUs::find($id);
+		return $this->validateAndSave($about_us);
 	}
 
 
@@ -91,7 +93,7 @@ class AboutUsController extends \BaseController {
 	}
 
 
-	protected function validateAndSave()
+	protected function validateAndSave($about_us)
 	{
 		$validator = Validator::make(Input::all(), AboutUs::$rules);
 
@@ -104,8 +106,6 @@ class AboutUsController extends \BaseController {
 	        // validation failed, redirect to the post create page with validation errors and old inputs
 	        return Redirect::back()->withInput()->withErrors($validator);
 	    }
-
-		$about_us = new AboutUs;
 
 		$about_us->body = trim( Input::get('body') );
 
