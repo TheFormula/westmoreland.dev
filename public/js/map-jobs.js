@@ -157,4 +157,8 @@ $('.customers').on('click', function(e) {
 
     clearMarkers();
     showMarkers(customer_id);
+});
+
+$(document).on('click', '.close-window', function() {
+    $('#info-window').hide();
 })

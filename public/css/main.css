@@ -7,3 +7,9 @@ img.img-responsive {
 #info-window {
 	display: none;
 }
+
+.close-window {
+	position: absolute;
+	right: 0;
+	cursor: pointer;
+}
