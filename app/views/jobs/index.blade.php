@@ -20,7 +20,7 @@
 		    	<a class="customers" data-customer-id="{{{ $customer->id }}}" href=""><img class="w-client-logo" src="{{{ $customer->image }}}" alt="{{{ $customer->name }}}"></a>
 		    @endforeach
 		</div>
-		<section class="w-about flex-all">
+		<section id="about" class="w-about flex-all">
 		    <h2>Who We Are</h2>
 		    {{ $about_us->formatted_body }}
 		    <p>Sentance linking to categories: <a href="">restauraunt</a>, <a href="">convinience stores</a>, <a href="">retail</a>, <a href="">banking</a> and <a href="">hospitality</a></p>
