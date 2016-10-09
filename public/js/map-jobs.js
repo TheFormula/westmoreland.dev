@@ -32,7 +32,6 @@ function init() {
     mapElement = document.getElementById('westmoreland-map');
     map = new google.maps.Map(mapElement, mapOptions);
 
-    showOffices();
     showMarkers();
 }
 
@@ -48,7 +47,6 @@ function showOffices() {
         url: '/ajax/get-offices',
         data: { },
         success    : function( offices ) {
-            markers = [];
             // get map center
             // geocode if needed(prefer lat lng)
             $.each(offices, function(){
@@ -65,6 +63,8 @@ function showOffices() {
                     icon: '/img/map_marker_w.png',
                     title: 'Westmoreland Office'
                 });
+
+                markers.push(marker);
 
                 // places the marker in an array
 
@@ -127,6 +127,10 @@ function showMarkers(customer_id) {
                     // infowindow.open( map, marker );
                 });
             });
+
+            if (customer_id == undefined) {
+                showOffices();
+            }
         }
     });
 
@@ -157,6 +161,10 @@ $('.customers').on('click', function(e) {
 
     clearMarkers();
     showMarkers(customer_id);
+
+    $('html, body').animate({
+        scrollTop: $("#westmoreland-map").offset().top
+    }, 1000);
 });
 
 $(document).on('click', '.close-window', function() {
