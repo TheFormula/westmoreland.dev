@@ -27,6 +27,9 @@
 
 	<header class="w-header">
 		<img class="logo" src="/img/westmoreland-logo.svg" />
+		<div class="w-nav text-right">
+				1597 Hart Street | Southlake, TX 76092 | 817.416.4741 | <a href="#about">About Us</a>
+		</div>
 	</header>
 
 	@yield('content')
@@ -50,7 +53,7 @@
 				<img src="/img/twitter.png" />
 			</div>
 		</div>
-		<div class="footnote">© 2016 Westmoreland Builders | All Rights Reserved.</div>
+		<div class="footnote">© 2017 Westmoreland Builders | All Rights Reserved.</div>
 	</footer>
 	@yield('bottom-script')
 </body>
