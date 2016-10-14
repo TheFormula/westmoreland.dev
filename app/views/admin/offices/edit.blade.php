@@ -30,6 +30,14 @@
 			        </div>
 			    </div>
 			    <div class="form-group">
+			    	{{ Form::label('description', 'Office Description', ['class' => 'col-lg-2 control-label']) }}
+
+			        <div class="col-lg-10">
+			        	{{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description', 'placeholder' => 'Office Description']) }}
+			        	{{ $errors->has('description') ? $errors->first('description', '<p><span class="help-block">:message</span></p>') : '' }}
+			        </div>
+			    </div>
+			    <div class="form-group">
 			    	{{ Form::label('image', 'Office Image', ['class' => 'col-lg-2 control-label']) }}
 
 			        <div class="col-lg-10">
