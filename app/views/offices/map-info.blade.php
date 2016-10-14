@@ -4,5 +4,6 @@
 	<div class="w-map-overlay-header">
 		<p>Phone: {{{ $office->phone_number }}}</p>
 		<p>Address: {{{ $office->address }}}</p>
+		<p>{{{ $office->description }}}</p>
 	</div>
 </div>
