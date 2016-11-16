@@ -109,7 +109,6 @@ function showMarkers(customer_id) {
 
 
                 var marker = new google.maps.Marker({
-                    map: map,
                     position: {lat: lat, lng: lng},
                     animation: google.maps.Animation.DROP,
                     icon: '/img/map_marker.png',
@@ -127,6 +126,12 @@ function showMarkers(customer_id) {
                     // infowindow.open( map, marker );
                 });
             });
+
+            var clusterOptions = {
+                imagePath: 'img/m'
+            };
+
+            var markerClusterer = new MarkerClusterer(map, markers, clusterOptions);
 
             if (customer_id == undefined) {
                 showOffices();
